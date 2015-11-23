@@ -1,0 +1,44 @@
+MediaChest 2.1 
+
+The latest version of MediaChest has switched to H2 Java embedded database.
+It eliminates any needs to setup any external database as MS access or MySQL.
+If you already have external database connection established, then you need to do
+nothing, since MediaChest still supports it. However if you want to migrate to
+H2 you may need to do the simple steps:
+
+1. Database export in CSV
+   In case of use MS Access you need to run Access application and do manual
+exporting all tables in CSV format. Make sure that all exported files stored
+in same directory.
+
+   In case of MySQL use mysqldump utility executing the following command:
+mysqldump -u <user> -p --tab=<existing directory to store CSV> <database name>
+For example: mysqldump -u root -p --tab=mediachest MediaChest2
+it is essential that CSV file name has to start with capital letter and have extension txt. 
+   If you get error like: 
+ Can't create/write to file '/.../mediachest/Album.txt' (Errcode: 13) ..
+ then change write directory to /tmp. The reason of that is Linux has security manager
+ preventing writing possibly executable code.
+
+2. Preparing connection and schema
+   In MediaChest UI go to Menu Tools/Options/Album, specify driver as org.h2.Driver,
+Database URL as jdbc:h2:~/mediachest2, and user as sa. Keep password empty.
+If you use H2 for some other tasks as well, then connection parameters can be
+different.
+Apply your changes and then click Drop tables to initialize new schema.
+
+3. Importing previous data 
+   Open Album tab as in preparing schema step. Click Import DB.
+Specify directory where you stored CSV files. Specify import options 
+as 
+For MS Access 
+separator - ,
+Date format - MM/dd/yyyy hh:mm:ss
+For MySQL
+separator - \t
+Date format - yyyy-MM-dd hh:mm:ss
+Consult with CSV import format documentation for other databases.
+If there is no errors, you won't see any notification, just refresh Album pane and enjoy
+successful migration.  If there were any errors and you need to re-apply import, then
+drop tables again, since here is no rollback mechanism and partially populated
+schema will interfere with new import data.

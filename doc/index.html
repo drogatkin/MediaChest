@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>MediaChest Home Page</TITLE>
+<script>
+   function ver1() {
+     try {
+        var v = document.vercheck.getVMVersion();
+        if (v.indexOf('1.6') == 0)
+           document.getElementById('notev').innerHTML = 'Your Java VM is capable to run MediaChest';
+        else
+           document.getElementById('notev').innerHTML = 'Your version Java '+v+', please upgrade it to 1.6 visiting <a href="http://java.sun.com">Sun site</a>';
+     } catch(e) {
+        document.getElementById('notev').innerHTML = '<font color=red>Java on your computer may have problems</font>';
+     }
+  }
+</script>
+	
+</HEAD>
+<BODY LANG="en-US" onload="ver1()">
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=2 CELLSPACING=2 STYLE="page-break-before: always">
+	<TR>
+		<TD WIDTH=50%></TD>
+		<TD WIDTH=50%>
+			<P ALIGN=RIGHT><b><font size="4" color="#FF0000">New!</font></b>
+			<font color="#000080"><b>ALAC, WavPack playback and more</b></font><a href="#nb">
+			get nightly build</a></P>
+		</TD>
+	</TR>
+</TABLE>
+<applet name="vercheck" code=checkvmver.class width="0" height="0">
+   <p><font color="red">Your browser does not support the applet tag, so it isnt possible to
+     check Java compatibility.</font></p>
+    </applet> 
+<H2>Welcome to the new home of MediaChest <FONT SIZE=3>(<I>aka
+PhotoOrganizer)</I></FONT></H2>
+<table border=0>
+<tr>
+  <td>
+    <FONT COLOR="#0000ff" size="4">With comprehensive all generations iPod support
+       and live Smart Play Lists!</FONT>
+    <P> 
+    <font size="5" color="#0000FF">Visit MediaUtil <a href="/mediautil/">here</a>.</font></P>
+  <td>
+  <td><iframe src ="http://7bee.j2ee.us/demo-servlets/poll/Voter" width="100%" frameborder="0" align=center></iframe>
+  </td>
+</tr>
+</table>  
+<P style="display:inline"><font size="3">Most recent build 197 <a href="#download">download it
+now</a>, or <a href="http://7bee.j2ee.us/mediachest/MediaChest.jnlp">just
+launch</a> from the page. (<font color="#800000">note that a webstarted version 
+can be fresher than the main downloaded build</font>)</font> <div style="display: inline" id="notev">&nbsp;</div>
+</P>
+<a href="https://github.com/drogatkin/7Bee"><img src="http://jaddressbook.sourceforge.net/7bee_logo_avatar.png" border=0></a>
+<P><b>MediaChest </b> is an attempt to provide a centralized access to a personal collection
+of media files from anywhere.
+MediaChest gives not only a simple access,
+it gives a fast access to only medias you want to listen, or view now and then. You are not limited to a particular platform or an
+application. It doesn't matter what system or software you are using,&nbsp; as long as your system capable to run Java, or has a web browser.
+MediaChest provides also many flexible ways to share some content of your media
+collections with friends, colleagues, or enemies using FTP, SMTP, HTTP, or NNTP. You get a rich set of possibilities how to organize you
+medias and provide different views suitable for particular purposes,
+like dance party, romance, travel impressions sharing and so on. You
+can create and update web site where you want to share your files, or
+maybe you can host, so MediaChest can be transformed to a web server
+itself and give you all its functionality remotely. You can post
+your files in news group or send to somebody by e-mail. Back ended by
+database and XML MediaChest is the way to store, access, and share
+media files in controllable, and configurable way.</P>
+<H3>A bit of history</H3>
+<P>Two causes moved me to create this program:</P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0cm">Necessary to have a tool for
+	renaming files produced by a digital camera to something unique and meaningful 
+	</P>
+	<LI><P>Prove that Java can resolve tasks where only native
+	applications worked before 
+	</P>
+</OL>
+<P>&nbsp;I was
+amazed the results of first working version as in performance as in
+functionality, so I decided continue work on the program adding
+more and more features to it. The most complicated task after getting
+encoding JPEG files was to create a good UI allowing easily utilize
+all functionality of the program. Unfortunately, UI is still on heavy
+development. Although I stopped work soon as got some version satisfied me,
+appearing a free Java implementation of MP3 player was a boost of new development
+transforming the original program to a multimedia files organizer.&nbsp;
+Adding infrared remote control support (for irMan) made the
+MediaChest ready to be the software for dedicated a la jukebox
+computers.</P>
+<H3>Features</H3>
+<ol>
+  <li>Build hierarchical view of a media files collection. It includes ways to
+    rename, reorder, and copy</li>
+  <li>Automatically rename media files produced by digital cameras or songs
+    based on hidden information in them, as ID3 tags or Exif</li>
+  <li>Support automatic folder structure for files stored in database</li>
+  <li>Slide show or play lists, which can be dynamically modified</li>
+  <li>Display hidden information stored in Exif or ID3 tags, for example date
+    and location where picture taken including exposure, orientation and so
+    on.&nbsp;</li>
+  <li>ID3 tag editor / viewer.</li>
+  <li>Search capabilities with creation play lists based on search results (aka 
+	auto smartlists)</li>
+  <li>Loss less transformation of JPEG files, rotation, cropping and so on</li>
+  <li>Prepare music or pictures cut for CD burning</li>
+  <li>Decompression of MP3 for audio CD</li>
+  <li>File explorer with showing media file details</li>
+  <li>Drag and drop support for most operations</li>
+  <li>Upload songs and pictures to iPod with populating iTunesDB records based
+    on ID3/AAC tags or/and file name and directory structure</li>
+	<li>Album cover (aka artwork) view and attaching to songs on iPod regardless 
+	presenting an image in tags</li>
+  <li>Extensive manipulations with iTunesDB residing on iPod including smart
+    play lists, and grouping operations</li>
+  <li>Copying songs from iPod to computer</li>
+  <li>Attach album arts to songs to view on iPod photo.</li>
+  <li>Publishing iPod content or selected playlists as HTML, XML, CSV, M3U, and
+    WPL formats</li>
+  <li>Comprehensive NLS support including UNICODE&nbsp; and national coding
+    tables.</li>
+    <li>Playback of the following popular audio formats: AAC+lossless, FLAC, APE, Ogg, MP3, WavPack</li>
+  <li>Publishing media files using FTP, HTTP, SMTP, NNTP and local file copy</li>
+  <li>Address book support</li>
+  <li>Template base web page generation with thumbnails</li>
+  <li>Multi format picture printing</li>
+	<li>IR remote controllable interface with learning feature</li>
+</ol>
+<H3>iPod</H3>
+
+<P>Ideally, iPod should keep all functionality I tried to implement
+in MediaChest. Unfortunately, most of hardware vendors run behind the
+train. I had to add iPod support simple because no one software
+vendor doesn't provide it in terms of my usage. So here what I have
+done and going to do:</P>
+<P>1. Flexible way to copy music collection to iPod. Unfortunately,
+there are many ways of how MP3 or other compressed music files reach
+your computer. Many compression programs differently add/ or do not
+add valuable information helping you to find music you'd like to
+listen. Such programs as MusicMatch are attempts to do that, but not
+in the way I think about it. I always want to have a control over how
+my music will be organized.</P>
+<P>2. Provide actual copy and storing all music collection on iPod.
+Many modern programs consider iPod like a sort of PDA requiring
+synchronization with a main computer.&nbsp; However, I have another
+approach in mind thinking as Apple asked differently. What if keep
+all music collection on iPod and use another storages only for backup
+purpose? In this case iPod doesn't lose any files, unless a user
+wants that.&nbsp;</P>
+<P>3. Provide a real internationalization support.&nbsp; Files itself
+and name in tag can be in any languages and character set and
+MediaChest capable to correctly handle them.&nbsp;</P>
+<P>4. Provide tight integration with MediaChest with alternative
+approach of storing most of medias on iPod.</P>
+<P>5. Support of smart playlists.</P>
+<P><A HREF="/MediaChest-iPod-FAQ.html">This FAQ about iPod
+you can find useful</A>.</P>
+
+<H3>
+    Creative Zen and Zune support</H3>
+    <div>
+        I'm about starting supporting devices using MTP protocol. Luckily there is a library
+        for POSIX OS already. So a plan is write Java layer connected to JNI which will
+        go natively to MTP on Windows platforms and use <a href="http://libmtp.sourceforge.net/">
+            libmtp</a> on POSIX.</div>
+            <table border="0" width="100%" id="table2">
+	<tr>
+		<td bgcolor="#FFFF00"><b><font color="#FF0000">I got Zune unit, so read my review <a href="http://7bee.j2ee.us/blog/2008/01/06/1199656500000.html">
+                here</a>. Since a low interest to Zune and very limited capabilities of music organization, I drop plans for supporting it until an interest will be rosen.
+		</font></b></td></tr></table>
+    <h3>
+        What is the current version</h3>
+<P>The current version is relatively stable and requires JRE 1.7. Originally
+MediaChest was JRE 1.1 compatible program, however I turned it in a lab to
+leverage the latest technologies from Sun. Due good coverage of JRE 1.7 of all
+popular platforms, like Solaris, Linux, Mac and all Windows it shouldn't be an
+issue for many potential users. You can download <a TARGET="_blank" href="http://java.oracle.com/">JRE
+1.7</a> from Oracle's web site, select your platform. You can also download JDK if 
+you are planning to develop. Developers should also download
+<a href="https://github.com/drogatkin/7Bee">Java build tool</a>.</P>
+<H3>What will be in next versions</H3>
+<P>I plan to improve all media formats support giving fast forward/back search and
+file split and encoding.&nbsp; A lot of feature for new iPod support in
+development now. CDDB integration for better tagging. Probably a real WavPack ripping will be here soon. I
+think also add support of Raspberry Pi and Android</P>
+<H3>Third parties tools used</H3>
+<P>The MediaChest uses many third parties open source free Java
+products:</P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0cm">Java MP3 layer for build MP3
+	player. I really love this library and without it MediaChest simple
+	didn't exist. Check this nice library out at
+	<A HREF="http://www.javazoom.net/javalayer/javalayer.html" TARGET="_blank">http://www.javazoom.net/javalayer/javalayer.html</A>
+		</P>
+	<LI><P>MP3 id tag&nbsp; viewer/editor. This is also open source free Java 
+	library. I did some modification, so provide a full source of this library 
+	as it required by its license.</P>
+	<LI>
+	<P>MediaUtil (This is a branch project of MediaChest started with some 
+	MediaChest's lossless Jpeg transformation capabilities). Now this is a 
+	separate product including many nice features, so check it out
+	<a href="/mediautil/">here</a>.</P>
+        <LI>
+        <P>IBM Toolkit for MPEG-4 SDK. This is closed source toolkit for playing
+        MPEG-4 audio and video files also known as AAC. Check license agreement
+        for this tool on IBM's site.</P>
+        <li>Apple lossless player
+        <li>Flac player
+        <li>Ogg player
+        <li>wavpack player
+        <li>Audio monkey player
+</OL>
+<P>Nevertheless to say that exchangeable L&amp;F made the
+program cool looking.&nbsp; If your OS is XP, then you can try a new
+cool XP l&amp;F too.</P>
+<P><I>All used third parties tools carry copyrights of their
+authors.&nbsp;</I></P>
+<H3><a name="download"></a>Download</H3>
+<P>Since I am only one developer of the tool, I do not see any needs
+to establish public CVS version. All sources provided in distributed
+archives.&nbsp;MediaChest supports auto update (currently disabled), however
+sources are provided for milestone builds.WebStarted version is also based on 
+the latest source probably not released yet.&nbsp; MediUtil as a branch product 
+of MediaChest has sourceforge hosted CVS, so I'd recommend to get latest sources 
+from here, because this product is released not so frequently.</P>
+
+<P>
+<a href="http://sourceforge.net/project/showfiles.php?group_id=35208">download 
+the latest build</a>&nbsp;with lot playback improvements. Uses CVS version of <a href="/mediautil/">MediaUtil</a> *
+</P>
+
+<P><b><font color="#800000">Attention Windows 9x/Me users</font>: </b>: support of these systems has beed dropped, however support of Android is coming.</P>
+<p>* The latest MediaChest requires updated version MediaUtil, so it uses the version built from CVS<p>
+<a name="nb"></a><h4>Nightly build</h4>
+<p>Nightly builds are planned to be resumed soon</p>
+ 
+
+
+<h2>Last updates history
+</h2>
+
+<p><a href="/history.html" target="_blank">Check it here</a>.
+</p>
+
+<H3>Installation</H3>
+<P>Unzip the distributive archive with preserving directory structure and long
+names, then run BAT or shell script in
+dependency on your OS. JDK 1.6.0 is considered installed. Use chmod +x on POSIX systems  to
+make a start script executable. Small editing
+of start files can be required. See readme and iPod notice files for more
+details about installation and features.</P>
+<H3>Screenshot</H3>
+<P><IMG SRC="/images/PhotoOrganizer.jpg" NAME="Graphic1" ALIGN=BOTTOM BORDER=0></P>
+<h5>iPod</h5>
+<P><IMG SRC="/images/mc-ipod.jpg" NAME="Graphic2" ALIGN=BOTTOM BORDER=0></P>
+<h5>iPod Smart Playlist</h5>
+<P><IMG SRC="/images/smartplaylist.jpg" NAME="Graphic3" ALIGN=BOTTOM BORDER=0></P>
+<H3>Check also..</H3>
+<P><A HREF="http://tjws.sourceforge.net/">Mini Java Web Server with
+Java container 2.4 API support</A></P>
+<P><A HREF="http://xbox.sourceforge.net/">xBox - Bean box supporting
+XML serialization </A>(do not confuse with proposed later
+<B>java.beans.Encoder</B>)</P>
+<P><A HREF="http://jaddressbook.sourceforge.net/">jAddressBook</A> is
+an address book with float XML format of addresses and another
+profile information</P>
+<P><a href="http://searchdir.sourceforge.net/">Search Director</a> (finesearch)</P>
+
+<H3>Contact</H3>
+<P>To report a bug or UI enhancement e-mail <A HREF="mailto:metricstream@gmail.com">dmitriy</A></P>
+<P ALIGN=CENTER><IMG SRC="/images/PhotoOrgBanner.gif" NAME="Graphic2" ALIGN=BOTTOM BORDER=0></P>
+<P ALIGN=CENTER><IMG SRC="http://7bee.j2ee.us/demo-servlets/signature/please/" NAME="Graphic3" ALIGN=BOTTOM BORDER=0></P>
+<center><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=35208&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a></center>
+</BODY>
+</HTML>

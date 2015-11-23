@@ -1,0 +1,37 @@
+
+1. smart playlit doesn't get updated after reading (fixed?)
+2. artwork doesn't get added for image in ID3 tag, hangs on reading dimensions
+3. song info doesn't get updated from ipod at sequential syncs
+
+ad-hoc, queried smart lists
+1. build database
+2. execute a query and build a static list
+3. group all songs in the list using grop name as a query
+4. use this group in smart list with additional conditions, play count, song name and so on
+5. utilize Derby
+
+to finish:
+1. copy playlists to host
+2. export HTML including all or selected lists
+3. import playlists from XML and other formats
+4. date format in table view
+6. Sync ID3 if required at merge lists
+10. figure out if volume can be taken
+11. Play and seek APE, FLAC, OGG
+
+4. add icons in buttons of player
+5. mark play now
+6. tooltip for long song name
+7. support players from OS
+
+Extend song(s) info
+1. add lyrics
+2. add in properties file size, original name and file location, also volume db and maybe id3 tag version
+
+3. after mass update tree need to be reshaped,
+ genres for example can appear new or disappear some old
+4. comment from db album should go to publishing too
+
+Bugs
+1. after finishing sync, all songs have to have ref to iPod location (not original)
+2. when artwork changed in edit info and update tag is checked off, then update tag artwork

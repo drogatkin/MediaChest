@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Name: MediaChest.jar
+Main-Class: photoorganizer.PhotoOrganizer
+Java-Bean: False
+Class-Path: 
+  aldan3.jar 
+  mediautil.jar 
+  id3v2.jar 
+  jl.jar 
+  addressbook.jar 
+  mail.jar 
+  activation.jar 
+  comm.jar 
+  IBMPlayerForMpeg4SDK.jar
+  jflac.jar
+  jorbis.jar
+  ape-lib.jar
+  wavpack.jar
+  alacdecoder.jar
+  loopy.jar
+  jaad-0.8.4.jar
+  cuelib-1.2.1.jar
+  h2-1.3.170.jar
+  jdsd.jar

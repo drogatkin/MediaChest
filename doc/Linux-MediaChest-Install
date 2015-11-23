@@ -1,0 +1,14 @@
+               Linux installation
+
+1. Install OpenJDK Java 7 using update manager of your distro
+   unless you hvae it already installed. Easy check is typing 'java' in
+   terminal window.
+
+2. Unpack MediaChest archive, type in a terminal window
+unzip MediaChest-NNN.zip  (MediaChest-200.zip)
+or you can do it double clicking MediaChest-NNN.zip in graphical environment
+and select extract
+3. Go to MediaChest directory and type
+./MediaChest
+you can run it also double clicking MediaChest in graphical environment
+chmod 755 MediaChest can required

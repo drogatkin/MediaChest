@@ -1,0 +1,10 @@
+MediaChest version 2.1 build 204
+
+This version includes many improvements, just few of them:
+1. 24/192 FLAC, APE and WAVPACK playback
+2. Down sampling 24 bits to 16 with dithering
+
+
+Known issues
+Playback with option play in new window checked off can work incorrectly.
+Use menubar player by unchecking the option in Tools/Options/Media (MP3)

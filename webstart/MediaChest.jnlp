@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: MediaChest.jnlp,v 1.16 2014/05/30 01:59:02 cvs Exp $
+ * Copyright (C) 1999-2005 Dmitriy Rogatkin.  All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *  THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ *  ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR
+ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ *  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<jnlp codebase="http://7bee.j2ee.us/mediachest/" href="http://7bee.j2ee.us/mediachest/MediaChest.jnlp">
+    <information>
+        <title>MediaChest</title>
+        <vendor>Dmitriy Rogatkin</vendor>
+        <description>MediaChest - a tool to manage &amp; organize photo &amp; songs</description>
+        <description kind="short">MediaChest is manager and organizer for multi media files, it supports also DAP as iPod</description>
+        <homepage href="http://mediachest.sourceforge.net/"/>
+        <icon href="mc32x32.gif"   width="32" height="32" />
+        <icon href="mc64x64.gif"   width="64" height="64" />
+        <icon href="mediachest-splash.jpg" kind="splash" />
+        <offline-allowed />
+    </information>
+    <security>                                                       
+        <all-permissions/>
+    </security>
+    <offline-allowed/>
+    <resources>
+        <j2se version="1.7+" max-heap-size="512M"/>
+        <jar href="MediaChest.jar" main="true"/>
+        <jar href="mediautil.jar"/>
+        <jar href="addressbook.jar"/>
+        <jar href="aldan3.jar"/>
+        <jar href="jl.jar"/>
+        <jar href="IBMPlayerForMpeg4SDK.jar"/>
+        <!--jar href="kunststoff.jar"/-->
+        <jar href="comm.jar"/>
+        <jar href="id3v2.jar"/>
+         <jar href="jflac.jar"/>
+          <jar href="jorbis.jar"/>
+          <jar href="jmacdecoder.jar"/>
+          <jar href="wavpack.jar"/>
+          <jar href="alacdecoder.jar"/>
+          <jar href="loopy.jar"/>
+          <jar href="jaad-0.8.4.jar"/>
+          <jar href="cuelib-1.2.1.jar"/>
+          <jar href="h2-1.3.170.jar"/>
+          <jar href="jdsd.jar"/>
+
+        <extension name="mail" href="mail.jnlp"/>
+        <extension name="activation" href="activation.jnlp"/>
+    </resources>
+    <application-desc main-class="photoorganizer.PhotoOrganizer"/>
+</jnlp>

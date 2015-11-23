@@ -1,0 +1,31 @@
+<html>
+<body>
+<h2 align="center">Your database requires upgrade&nbsp;</h2>
+<p>The MediaChest starting from build 60 uses a slightly different database
+schema than R-PhotoOrganizer used. Therefore, you need to upgrade your your
+database schema to continue use album feature of the MediaChest.&nbsp;</p>
+<h3>Recommended upgrade procedure</h3>
+<p>Open options window and select album panel.</p>
+<p>If album option <i>Maintain Album Folders</i> is set off</p>
+<ol>
+  <li>Uncheck this option</li>
+  <li>Press button <i>Drop tables </i>and confirm the operation</li>
+  <li>Select menu File/Import/From disk... and select directory specified in
+    album options as <i>Maintain Album Folders</i></li>
+  <li><i>Set </i><i>Maintain Album Folders </i>off again</li>
+</ol>
+<p>Notice that if you had the same picture shared by multiple albums, then you
+will need manually assign the picture to some albums.</p>
+<p>If album option <i>Maintain Album Folders </i>is not checked off</p>
+<ol>
+  <li>Select menu File/Export/To disk.. and select a directory for export where
+    enough free space for entire your photo collection</li>
+  <li>Press button <i>Drop tables </i>and confirm the operation</li>
+  <li>Select menu File/Import/From disk... and select directory specified in
+    step 1</li>
+</ol>
+<p>Notice that old picture files location will not be used anymore.</p>
+<p>As only CSV import/export will be ready, the procedure of migration to new
+database schema will be less painful.</p>
+</body>
+</html>

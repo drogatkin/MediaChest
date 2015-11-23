@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:gphoto="http://schemas.google.com/photos/2007">
+  <title type="text">@title@</title>
+  <summary type="text">@description@</summary>
+  <gphoto:location>@location@</gphoto:location>
+  <gphoto:access>public</gphoto:access>
+  <gphoto:commentingEnabled>true</gphoto:commentingEnabled>
+  <gphoto:timestamp>@time@</gphoto:timestamp>
+  <media:group>
+    <media:keywords>@keywords@</media:keywords>
+  </media:group>
+  <category scheme="http://schemas.google.com/g/2005#kind"
+    term="http://schemas.google.com/photos/2007#album"></category>
+</entry>

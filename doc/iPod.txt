@@ -1,0 +1,147 @@
+Thank you for an interest to the MediaChest iPod extension!
+
+What is MediaChest iPod extension?
+----------------------------------
+
+MediaChest is a powerful tool to organize a collection of different media 
+files like pictures, videos, or audios. It gives different views of stored 
+medias and allows fast access to them. In addition, it supports most of 
+possible ways to share media files over Internet or portable storage devices.
+The program is Java based, so commonly it can run on any platform.
+iPod extension adds a capability to upload music files to iPod's hard disk and
+update iPod database. Although it uses a common paradigm of synchronization,
+a meaning of the synchronization is different.
+MediaChest doesn't try to keep in sync music collection on desktop's and iPod's 
+hard drives. The purpose of a synchronization is adding new files on iPod and 
+delete some no more needed. Ideally, MediaChest should use iPod for storing 
+all collection of media files, instead of duplication the collection in two 
+or more places. Although storing files on iPod's hard disk can be considered
+as some type of backup, I recommend to use standard backup procedures 
+for this purpose.
+
+Why MediaChest iPod extension?
+------------------------------
+
+Indeed, besides of iTunes there are many programs for similar purpose.
+However, I was brave enough to write my own implementation, because:
+1.Competition is only way to improve software, so my program will force 
+  other vendors make software better. Check Wiki iPod manager to see that
+  MediaChest is still most comprehensive program providing iPod support.
+2.After trying iPod support from other vendors I found many disadvantages,
+  as not supporting national alphabets in file names, weird procedure 
+  synchronization, no ability to customize a definition information on stored
+  media in a simple way, and some others, for example I do not like their UI.
+3.I was needed a way to copy some part of my music collection stored as on hard
+  drive as on CD disks on iPod and organize it in simple way for me with
+  customizable artist/album names and other information.
+4.I prefer to have Java implementation to be platform independent, although 
+  Java implementation is lacking in speed of copying files in comparison to 
+  such program as ephPod or iTunes.
+
+How to install MediaChest?
+--------------------------
+
+MediaChest is Java program, therefore requires to have Java VM installed. It 
+uses the latest Java VM, so if you are uncertain what is version installed on 
+your machine, then visit http://java.sun.com to obtain the latest one. Select
+JRE to save download time, unless you want to do own development.
+Unzip MediaChest distribution zip file with preserving directories structure.
+You should find directory MediaChest. Enter to this directory and start MediaChest.bat.
+It should start MediaChest in few seconds. Initial screens of MediaChest may warn
+you about unavailability of database connection, just ignore them. MediaChest uses
+any RDBMS with JDBC access to store structured information about media files,
+similar to iTunes, however this functionality is optional. You can suppress
+access to database in options of the program.
+If you run MediaChest under Windows, then you can use
+Access database for this purpose. You need only allocate data source name and 
+provide it in parameters of JDBC driver in options of the program.
+
+Which Java VM?
+--------------
+
+MediaChest isn't a commercial quality product, it's a laboratory where I can try 
+certain technologies, or approaches, or polish some skills. So, MediaChest is
+always based on the latest available version of Java VM regardless what it is state
+of it as production or beta. It can generates certain problems for some users on
+platform where the latest version of VM unavailable. Fortunately, Sun provides VM
+for most of platforms in one batch, so only users of Mac platform can be affected.
+The last build supporting VM version 1.4 is 114. Starting from build 115 some
+VM version 1.5 features will be used. I regret if I lose some users due that. Say more
+the latest versions require JRE 1.7.
+
+What's iPod?
+------------
+I successfully use MediaChest with iPods with dock connector, iPod photo, iPod video, 
+iPod classic and iPod touch.
+Unfortunately I do not own entire product line of iPods, so I can't tell for other
+versions of this device. I will be always glad to accept donated units for testing and
+tweaking MediaChest to support them.
+
+How to use MediaChest?
+----------------------
+
+MediaChest has 5 general tabs to access different views of the program as
+Album view, File browser view, Work collection view, Music ripper view, and
+iPod view. Functionality for work with iPod reachable in menu File and in right 
+mouse button pop-up menus. Before doing anything with iPod you need make sure 
+that iPod is available as a removable disk. If you use Windows, then you have 
+to check Enable disk mode in iPod Manager. MediaChest automatically recognizes 
+connected iPod. For iOS based iPods iFusion has to be installed and iPod should be
+visible in virtual file system. You can also provide location of iPod manually. 
+You need to open Options panel (menu Tools/Options..) of MediaChest 
+and scroll a bit to tab iPod and enter letter of iPod drive with :\ after (it's
+only Windows file system requirements). You can also use a button browse to locate
+iPod drive. It should have name IPOD in a list of available drives. Now you are 
+ready to do first synchronization. Notice that you have to have iPod connected to
+desktop FireWire or USB when you do iPod drive location. Select File/Sync iPod for
+synchronization. After few second iPod view should be updated and you can see list
+of files on your iPod. Select tab iPod and tree node All files in iPod tree on 
+left panel. If you have some play lists on your iPod, then they should be displayed
+in this tree too.  Now you can use a list of media files in tabs Browse and Album as
+sources to add to iPod. Use right mouse button menu to add selected media files to 
+iPod. You can add entire directories if you are in Browse view. It isn't requirement 
+to do synchronization first, unless you want to see what you already have on iPod.
+You can select synchronization again after finishing adding more new files. It's harmless
+to use synchronization anytime. MediaChest can recognize when all songs are in sync.
+Note that MediaChest never erases any song on iPod without your intension.
+Warning!!! MediaChest isn't yet completely supports iOS based iPod, so use it in read only
+mode.
+
+Features list
+-------------
+
+This list related only to iPod support features.
+1. supports old and new iTunesDB formats on iPod, so it's compatible with MMJB, MC9,
+   and iTunes 11.x. You have to have 3G, 4G, mini, U2, iPod photo, iPod with color screen,
+   shuffle, video, classic, touch, or nano. Supported audio formats are MP3, AAC, MP4, and WAV. 
+2. supports renaming group of songs, like changing title, artist, album, genre, composer
+   and year.
+3. merges album, artist, genre and composer.
+4. supports playlists including smart and on-the-go.
+5. can play (MP3) or copy files from iPod with recreation folders reflecting song info.
+6. allows to have different information about song in id3/aac tag and iPod database.
+7. allows to edit id3 tags.
+8. supports national alphabets and different encodings.
+9. supports reordering play lists.
+10. export playlists and iPod content in HTML and other formats.
+11. copy album artwork to iPod photo/video as in group as individually.
+
+What would you be aware?
+------------------------
+
+As every software (especially free) it can contain some bug which can issue files lost.
+Therefore, make sure that you have backup copies of files especially for files stored 
+on iPod.
+
+How to report problems
+----------------------
+If you met any problems or have suggestions, then please e-mail me jaddressbook@gmail.com
+Do not forget to attach mediachest.log file if you report a bug.
+
+Donations
+------------
+Usually MediaChest doesn't ask for any donations, however to keep MediaChest up-to-date
+with entire iPods product line, the author needs test units. So donations only for this
+purpose will be accepted.
+
+$Id: iPod.txt,v 1.11 2013/03/01 06:54:34 cvs Exp $
