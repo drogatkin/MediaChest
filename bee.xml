@@ -26,6 +26,9 @@
         <value variable="ALDAN3_HOME"/>
         <value>/build/aldan3.jar</value>
         <value variable="PATH SEPARATOR"/>
+        <value variable="ALDAN3_HOME"/>
+        <value>-jdo/build/aldan3-jdo.jar</value>
+        <value variable="PATH SEPARATOR"/>
         <value variable="MEDIACHEST_HOME"/>
         <value>/lib/mp3.jar</value>
         <value variable="PATH SEPARATOR"/>
@@ -215,6 +218,7 @@ public final class BuildStamp {
   </target>
 
   <target name="compile" dir="MEDIACHEST_HOME">
+    <dependency target="check lib"/>  
     <dependency target="mediautil jar"/>
     <dependency target="make stamp"/>
     <dependency>
