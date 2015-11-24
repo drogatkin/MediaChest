@@ -13,7 +13,7 @@ New H2 support is added read doc/datamigration.txt
      The purpose of the program
      ~~~~~~~~~~~~~~~~~~~~~~~~~~
   The MediaChest is a powerful organizer of multimedia data on your computer.
-  In addition, it provides sharing copabilities as e-mailing, ftping, httping, 
+  In addition, it provides sharing capabilities as e-mailing, ftping, httping, 
   nntping for organized multimedia files. The program is capable to show and use
   in categorization a specific information saved in auxiliary headers of
   multimedia files, like Exif or ID3 tags. MediaChest supports also additional
