@@ -71,7 +71,7 @@ public class MediaAccess extends Access {
 			{ "Title", " CHAR(255)," },
 			{ "Album", " CHAR(100)," },
 			{ "Genre", " INTEGER," }, // TINYINT
-			{ "Quality", " CHAR(10)," }, { "Composer", " CHAR(100)," },
+			{ "Quality", " CHAR(40)," }, { "Composer", " CHAR(100)," },
 			{ "Conductor", " CHAR(100)," }, { "Band", " CHAR(100)," },
 			{ "Lyricist", " CHAR(100)," }, { "Type", " INTEGER," }, // TINYINT
 			{ "Commentary", " CHAR(255)" } };
