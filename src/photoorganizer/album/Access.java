@@ -79,7 +79,7 @@ public class Access {
 	static final String[][] PICTURES_DATABASE_STRUCTURE = { { "PicId", " INTEGER NOT NULL UNIQUE," },
 			{ "Name", " CHAR(255) NOT NULL," }, { "LocId", " INTEGER," }, { "ChkSum", " FLOAT," },
 			{ "Size", "   INTEGER," }, { "Created", " TIMESTAMP," }, { "Shutter", " FLOAT," },
-			{ "Aperture", " FLOAT," }, { "Flash", " CHAR," }, { "Zoom", " FLOAT," }, { "Quality", " CHAR(10)," },
+			{ "Aperture", " FLOAT," }, { "Flash", " CHAR," }, { "Zoom", " FLOAT," }, { "Quality", " CHAR(40)," },
 			{ "Make", " CHAR(30)," }, // VCHAR
 			{ "Model", " CHAR(30)," }, { "Resolution", " CHAR(10)," }, { "Commentary", " CHAR(255)" } };
 
