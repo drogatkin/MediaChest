@@ -48,8 +48,7 @@
         <value variable="ACTIVATION_HOME"/>
         <value>/activation.jar</value> <!-- activation framework -->
         <value variable="PATH SEPARATOR"/>
-        <value variable="JAVACOMM_HOME"/>
-        <value>/comm.jar</value>
+        <value variable="JAVACOMM_LIB"/>
         <value variable="PATH SEPARATOR"/>
         <value variable="JDBC_DRIVER"/>
         <value variable="PATH SEPARATOR"/>
