@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.mail.internet.MimeUtility;
 
 import photoorganizer.PhotoOrganizer;
 
@@ -280,6 +281,7 @@ public class Article /*extends MimeMessage*/{
         while (it.hasNext()) {
             Entry e = (Entry) it.next();
             Object part = e.getValue();
+            /*
             if (part instanceof byte[])
                 new sun.misc.UUEncoder(e.getName()).encode((byte[]) part, os);
             else if (part instanceof InputStream) {
@@ -291,7 +293,7 @@ public class Article /*extends MimeMessage*/{
                 is.close();
             } else {
                 new sun.misc.UUEncoder(e.getName()).encode(parts.toString().getBytes(), os);
-            }
+            }*/
             os.write(NntpClient.CRLF.getBytes());
         }
     }
