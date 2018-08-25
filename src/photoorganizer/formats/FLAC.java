@@ -138,8 +138,12 @@ public class FLAC extends SimpleMediaFormat<FLAC.FlacInfo> {
 						putAttr(comment, "ISRC", MediaInfo.ISRC);
 						putIntAttr(comment, "DISCTOTAL", MediaInfo.PARTOFSET + 1);
 						putIntAttr(comment, "DISCNUMBER", MediaInfo.PARTOFSET + 0);
-						attrsMap.put(MediaInfo.PARTOFSET,
+						if (attrsMap.get(MediaInfo.PARTOFSET + 1) != null)
+					    	attrsMap.put(MediaInfo.PARTOFSET,
 								attrsMap.get(MediaInfo.PARTOFSET + 0) + "/" + attrsMap.get(MediaInfo.PARTOFSET + 1));
+						else
+							attrsMap.put(MediaInfo.PARTOFSET,
+									attrsMap.get(MediaInfo.PARTOFSET + 0));
 					} else if (md instanceof Picture) {
 						//System.err.printf("MD: %s of %s%n", md, md.getClass());
 					}
