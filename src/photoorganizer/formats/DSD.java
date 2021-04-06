@@ -120,20 +120,24 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 				dsd = new DISOFormat();
 			} else
 				dsd = new DFFFormat();
-			dsd.init(new Utils.RandomDSDStream(file));
-			Decoder decoder = new Decoder();
-			decoder.init(dsd);
-			attrsMap = new HashMap<>();
-			long l = decoder.getSampleCount() / decoder.getSampleRate();
-			attrsMap.put(LENGTH, l);
-			attrsMap.put(SAMPLERATE, decoder.getSampleRate());
-			attrsMap.put(TITLE, file.getName());
-			putAttribute(ARTIST, dsd.getMetadata("Artist"));
-			putAttribute(TITLE, dsd.getMetadata("Title"));
-			putAttribute(ALBUM, dsd.getMetadata("Album"));
-			putAttribute(YEAR, dsd.getMetadata("Year"));
-			putAttribute(PICTURE, dsd.getMetadata("Picture"));
-			decoder.dispose();
+			try {
+				dsd.init(new Utils.RandomDSDStream(file));
+				Decoder decoder = new Decoder();
+				decoder.init(dsd);
+				attrsMap = new HashMap<>();
+				long l = decoder.getSampleCount() / decoder.getSampleRate();
+				attrsMap.put(LENGTH, l);
+				attrsMap.put(SAMPLERATE, decoder.getSampleRate());
+				attrsMap.put(TITLE, file.getName());
+				putAttribute(ARTIST, dsd.getMetadata("Artist"));
+				putAttribute(TITLE, dsd.getMetadata("Title"));
+				putAttribute(ALBUM, dsd.getMetadata("Album"));
+				putAttribute(YEAR, dsd.getMetadata("Year"));
+				putAttribute(PICTURE, dsd.getMetadata("Picture"));
+				decoder.dispose();
+			} finally {
+				dsd.close();
+			}
 		}
 		
 		private void putAttribute(String name, Object value) {
