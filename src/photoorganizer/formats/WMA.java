@@ -135,18 +135,7 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 	public byte[] getThumbnailData(Dimension size) {
 		synchronized (WMA.class) {
 			if (defaultIconData == null) {
-				try {
-					BufferedInputStream bis = new BufferedInputStream(
-							ClassLoader.getSystemResourceAsStream(Resources.IMG_WMAICON));
-					ByteArrayOutputStream bos = new ByteArrayOutputStream(8 * 1024);
-					Stream.copyStream(bis, bos);
-					defaultIconData = bos.toByteArray();
-					bos.close();
-					bis.close();
-				} catch (Exception e) { // io or null ptr
-					e.printStackTrace();
-					defaultIconData = new byte[0];
-				}
+				defaultIconData = SimpleMediaFormat.getResource(Resources.IMG_WMAICON);
 			}
 		}
 		return defaultIconData;

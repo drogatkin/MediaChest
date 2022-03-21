@@ -205,18 +205,10 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 
 	public static byte[] getResource(String name) {
 		byte[] result = null;
-		try {
-			InputStream ins;
-			//System.err.printf("Looing resource/image/%s%n", name);
-			BufferedInputStream bis = new BufferedInputStream(ins = Controller.class.getClassLoader()
-					.getResourceAsStream("resource/image/" + name));
-			if (ins == null)
-				System.err.printf("Can't find image resource resource/image/%s%n", name);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8 * 1024);
+		try (BufferedInputStream bis = new BufferedInputStream( Controller.class.getClassLoader()
+					.getResourceAsStream("resource/image/" + name)); ByteArrayOutputStream bos = new ByteArrayOutputStream(8 * 1024)){
 			Stream.copyStream(bis, bos);
 			result = bos.toByteArray();
-			bos.close();
-			bis.close();
 		} catch (Exception e) { // io or null ptr
 			e.printStackTrace();
 			result = new byte[0];
@@ -262,7 +254,8 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 		public void start() {
 			if (playThread != null && playThread.isAlive()) {
 				//new Exception("Start play").printStackTrace();
-				throw new IllegalStateException("Attempt to start already started player "+playThread+playThread.getState()+Arrays.toString(playThread.getStackTrace()));
+				//throw new IllegalStateException("Attempt to start already started player "+playThread+playThread.getState()+Arrays.toString(playThread.getStackTrace()));
+				playThread.interrupt();
 			}
 
 			playThread = new Thread(this, getPlayerName());
