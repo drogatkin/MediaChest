@@ -33,6 +33,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
@@ -551,7 +552,7 @@ public class MP4 implements MediaFormat {
 					// System.err.println("Format "+format);
 					bb = atom.read(size);// .order(ByteOrder.LITTLE_ENDIAN);
 					byte[] encodeVendorBytes = new byte[4];
-					bb = (ByteBuffer) bb.position(12);
+					bb = (ByteBuffer) ((Buffer)bb).position(12);
 					bb.get(encodeVendorBytes, 0, 4);
 					if (encodeVendorBytes[0] != 0) {
 						encodeVendor = Charset.forName("ISO8859_1").decode(ByteBuffer.wrap(encodeVendorBytes))
@@ -736,7 +737,7 @@ public class MP4 implements MediaFormat {
 			buffer = ByteBuffer.allocateDirect(8).order(ByteOrder.BIG_ENDIAN);
 			channel.read(buffer);
 			position += 8;
-			buffer.rewind();
+			((Buffer)buffer).rewind();
 			size = buffer.getInt();
 			signature = buffer.order(ByteOrder.LITTLE_ENDIAN).getInt();
 			if (size == 1) {
@@ -763,7 +764,7 @@ public class MP4 implements MediaFormat {
 				throw new IOException("Can't move beyond of the header by " + len + " - " + (extSize - position));
 			buffer = ByteBuffer.allocateDirect(len).order(ByteOrder.BIG_ENDIAN);
 			channel.read(buffer);
-			buffer.rewind();
+			((Buffer)buffer).rewind();
 			position += len;
 			return buffer;
 		}
@@ -809,7 +810,7 @@ public class MP4 implements MediaFormat {
 			buffer = ByteBuffer.allocateDirect(4).order(ByteOrder.BIG_ENDIAN);
 			channel.read(buffer);
 			position += 4;
-			buffer.rewind();
+			((Buffer)buffer).rewind();
 			size = buffer.getShort();
 			if (size != 0) {
 				extSize = size + 4;
@@ -819,12 +820,12 @@ public class MP4 implements MediaFormat {
 				if (__debug)
 					System.err.printf("NData: %s%n", data);
 			} else {
-				buffer.rewind();
+				((Buffer)buffer).rewind();
 				size = buffer.getInt();
-				buffer.rewind();
+				((Buffer)buffer).rewind();
 				channel.read(buffer);
 				position += 4;
-				buffer.rewind();
+				((Buffer)buffer).rewind();
 				signature = buffer.order(ByteOrder.LITTLE_ENDIAN).getInt();
 				extSize = size;
 				if (__debug)
