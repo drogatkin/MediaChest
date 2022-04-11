@@ -1,17 +1,16 @@
  #         MediaChest version 2.2 build 211 update
-           ================================================
 
 Thank you for downloading the Open Source release of the MediaChest.
 New H2 support is added read doc/datamigration.txt
-
+---
 1. The purpose of the program.
 2. How to install the program.
 3. The status of the program.
 4. The distribution status of the program.
 5. How to contact the author in a case of questions or problems.
 
-     The purpose of the program
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+##     The purpose of the program
+
 The MediaChest is a powerful organizer of multimedia data on your computer.
 In addition, it provides sharing capabilities as e-mailing, ftping, httping, 
 nntping for organized multimedia files. The program is capable to show and use
@@ -56,7 +55,7 @@ This program offers also some unique features, like extracting a camera
 specific information and then restore it in an image, if such information
 was lost as a result of an editing of an image by a photo editing software.
 MediaChest is 100% Java application, so you can likely run it on
-any computer, and on any OS.
+any computer, and OS.
 
 ##     How to install the program
 
@@ -64,15 +63,15 @@ This version is distributed as a ZIP file. Unzip this file somewhere on your
 hard disk with saving directories structure and launch script file corresponding
 to yours OS. A web start based installation is available directly from your browser.
 
- ##    Windows executable version:
+##    Windows executable version:
 
-Windows executable starter is planned for version 2.3.
+Currently I do not have Windows machine, therefore temporary suspended the work.
 
 
 ###     Pure Java version (any platform where Java is available):
 
 If you don't have preinstalled Java VM 8 or better on you computer, then
-you have to do that. You can download the latest Oracle's JRE 1.8 from
+install Java 17. You can download the latest Oracle's Java from
 http://java.oracle.com/ for your OS. MediaChest is also running on all Java flavors
 on Linux systems. Since Oracle dropped supporting Java on Windows lower than XP,
 you can consider to migrate to Linux with many benefits including MediaChest support.
@@ -80,7 +79,7 @@ you can consider to migrate to Linux with many benefits including MediaChest sup
 If you want to use advanced features of the program, such as sending your 
 albums or selections by e-mail, then some additional downloads can be required.
 
-Now, you're ready to launch the MediaChest. Since, the current version
+>Now, you're ready to launch the MediaChest. Since, the current version
 doesn't include an installation software, you might need to modify
 batch/script file by specifying a correct path to runtime class libraries,
 and JVM. Note, you can use web started version, just paste the link:
@@ -103,14 +102,13 @@ This program is freeware and open source. Since the author supports only
 features interesting for himself, it prevents moving the program to
 shareware.
 The Web site where you can find more information about this program, including
-the latest build, is: http://mediachest.sourceforge.net/ .
+the latest build, is: https://github.com/drogatkin/MediaChest.
 This site is a member of the Open Source Java ring. The program was reviewed
 by JARS (top 5%) and added to Sourcebank.
 
 ## The distribution status of the program
 
-  MediaChest is freely distributable software. Use it, make it better,
-  give it to your friends.
+MediaChest is a freely distributed software.
    
 ##    Known problems
 
