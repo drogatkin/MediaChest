@@ -254,8 +254,8 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 		public void start() {
 			if (playThread != null && playThread.isAlive()) {
 				//new Exception("Start play").printStackTrace();
-				throw new IllegalStateException("Attempt to start already started player "+playThread+playThread.getState()+Arrays.toString(playThread.getStackTrace()));
-				//playThread.interrupt();
+				//throw new IllegalStateException("Attempt to start already started player "+playThread+playThread.getState()+Arrays.toString(playThread.getStackTrace()));
+				playThread.interrupt();
 			}
 
 			playThread = new Thread(this, getPlayerName());

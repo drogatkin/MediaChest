@@ -265,10 +265,6 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 			return buffer;
 		}
 
-		public Object getAttribute(String name) {
-			return attrsMap.get(name);
-		}
-
 		public int getIntAttribute(String name) {
 			Object o = attrsMap.get(name);
 			if (o == null)
