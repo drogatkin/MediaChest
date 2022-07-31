@@ -410,6 +410,7 @@ public class MP3 implements MediaFormat {
 	 * conver time in seconds to formatted string
 	 */
 	public static String convertTime(long time) {
+		time = Math.abs(time);
 		return (time / (24 * 60 * 60) > 0 ? String.valueOf(time / 60 / 60 / 24) + "d:" : "")
 				+ (time % (24 * 60 * 60) / 60 / 60 < 10 ? "0" : "") + String.valueOf(time % (24 * 60 * 60) / 60 / 60)
 				+ ':' + (time % (60 * 60) / 60 < 10 ? "0" : "") + (time % (60 * 60) / 60) + ':'
