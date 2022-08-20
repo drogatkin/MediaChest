@@ -36,8 +36,8 @@ import javax.sound.sampled.AudioSystem;
 
 import mediautil.gen.MediaInfo;
 
-import org.justcodecs.dsd.DFFFormat;
-import org.justcodecs.dsd.DISOFormat;
+import org.justcodecs.dsd.DFFFormatMt;
+import org.justcodecs.dsd.DISOFormatMt;
 import org.justcodecs.dsd.DSDFormat;
 import org.justcodecs.dsd.DSFFormat;
 import org.justcodecs.dsd.Decoder;
@@ -117,9 +117,9 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 			if (n.endsWith("." + DSD)) {
 				dsd = new DSFFormat();
 			} else if (n.endsWith("." + "ISO")) {
-				dsd = new DISOFormat();
+				dsd = new DISOFormatMt();
 			} else
-				dsd = new DFFFormat();
+				dsd = new DFFFormatMt();
 			try {
 				dsd.init(new Utils.RandomDSDStream(file));
 				Decoder decoder = new Decoder();
