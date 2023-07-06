@@ -135,7 +135,7 @@ public class SimpleDownSampler implements InvocationHandler {
 			case 2:
 				break;
 			case 4:
-				sample >>= 8;
+				//sample >>= 8;
 			case 3:
 				sample = convert24to16(sample, dithers[channel]); // TODO actually should take param like 32 to 16
 				break;
