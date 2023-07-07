@@ -90,11 +90,11 @@ public class PhotoOrganizer extends JFrame implements /* Program, */IrdControlla
 
 	public static final String PROGRAMNAME = "MediaChest";
 
-	public static final String VERSION = "version 2.2";
+	public static final String VERSION = "version 2.3";
 
-	public static final int BUILD = 215;
+	public static final int BUILD = 218;
 
-	public static final String COPYRIGHT = "Copyright \u00a9 1999-2014 Dmitriy Rogatkin";
+	public static final String COPYRIGHT = "Copyright \u00a9 1999-2023 Dmitriy Rogatkin";
 
 	public static final String DEDICATED = "For my wife Olga";
 
