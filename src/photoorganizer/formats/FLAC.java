@@ -191,7 +191,8 @@ public class FLAC extends SimpleMediaFormat<FLAC.FlacInfo> {
 				if (e.getMessage().equalsIgnoreCase("Stream Closed") == false)
 					reportError("IO", e);
 			}
-			System.err.printf("Completed with %d bad frames%n", decoder.getBadFrames());
+			if (decoder.getBadFrames() > 0)
+				reportError(String.format("Completed with %d bad frames%n", decoder.getBadFrames()), null);
 		}
 
 		@Override
