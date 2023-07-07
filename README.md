@@ -1,4 +1,4 @@
- #         MediaChest version 2.2 build 211 update
+ #  MediaChest
 
 Thank you for downloading the Open Source release of the MediaChest.
 New H2 support is added read doc/datamigration.txt
