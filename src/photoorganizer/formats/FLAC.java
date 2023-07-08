@@ -145,6 +145,7 @@ public class FLAC extends SimpleMediaFormat<FLAC.FlacInfo> {
 							attrsMap.put(MediaInfo.PARTOFSET,
 									attrsMap.get(MediaInfo.PARTOFSET + 0) + "/");
 					} else if (md instanceof Picture) {
+						// TODO add a code to convert pic data in thumbnail
 						//System.err.printf("MD: %s of %s%n", md, md.getClass());
 					}
 				}
