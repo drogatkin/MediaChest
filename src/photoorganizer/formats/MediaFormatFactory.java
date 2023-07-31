@@ -38,7 +38,10 @@ public class MediaFormatFactory {
 		//new Exception("called w/o enc").printStackTrace();
 		return createMediaFormat(file, null, false);
 	}
+	
 	static final String[] FORMATS = {"MP3", "MP4", "WMA", "FLAC", "OGG", "APE", "WavPack", "M4A", "CUE", "DSD" };
+	
+	private static InputStreamFactory streamFactory = new InputStreamFactory();;
 
 	public static MediaFormat createMediaFormat(File file, String encoding, boolean skipImage) {
 		// TODO: some optimization based on extension and first check can be done here
@@ -77,5 +80,13 @@ public class MediaFormatFactory {
 			System.err.printf("Exception at resolving player: %s for %s%n", e, mf);
 		} 
 		return null;
+	}
+	
+	public static InputStreamFactory getInputStramFactory() {
+		return streamFactory;
+	}
+	
+	public static synchronized void setInputStreamFactory(InputStreamFactory factory) {
+		streamFactory = factory;
 	}
 }

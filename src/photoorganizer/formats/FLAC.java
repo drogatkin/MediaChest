@@ -114,7 +114,7 @@ public class FLAC extends SimpleMediaFormat<FLAC.FlacInfo> {
 		@Override
 		void processCue() throws IOException {
 			//super.processCue();
-			try (InputStream inputStream = new FileInputStream(file)) {
+			try (InputStream inputStream = MediaFormatFactory.getInputStramFactory().  getInputStream(file)) {
 				FLACDecoder flacDec = new FLACDecoder(inputStream);
 				attrsMap = new HashMap<>();
 				for (Metadata md : flacDec.readMetadata()) {

@@ -172,7 +172,7 @@ public class WavPack extends SimpleMediaFormat<WavPack.WavpackInfo> {
 				}
 				throw new IOException("No wavpack found inside ISO");
 			} else
-				return new FileInputStream(file);
+				return MediaFormatFactory.getInputStramFactory().  getInputStream(file);
 
 		}
 

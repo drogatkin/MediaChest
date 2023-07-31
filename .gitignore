@@ -3,3 +3,4 @@ lib/
 .project/
 .temp_repo/*
 /bin/
+src/photoorganizer/BuildStamp.java
