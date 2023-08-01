@@ -157,7 +157,7 @@ public class WavPack extends SimpleMediaFormat<WavPack.WavpackInfo> {
 				return;
 			String mediaName = file.getName().toUpperCase();
 			if (mediaName.endsWith("." + ISOWV))
-				fs = new ISO9660FileSystem(file, true);
+				fs = new ISO9660FileSystem(MediaFormatFactory.getInputStreamFactory().getRandomAccessStream(file));
 		}
 
 		InputStream getWVStream() throws Exception {
