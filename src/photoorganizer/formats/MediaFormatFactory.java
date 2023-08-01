@@ -82,7 +82,7 @@ public class MediaFormatFactory {
 		return null;
 	}
 	
-	public static InputStreamFactory getInputStramFactory() {
+	public static InputStreamFactory getInputStreamFactory() {
 		return streamFactory;
 	}
 	

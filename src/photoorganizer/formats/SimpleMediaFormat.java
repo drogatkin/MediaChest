@@ -105,7 +105,7 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 				return getUrl().openStream(); // a caller can use new
 			// BufferedInputStream()
 			else
-				return new FileInputStream(info.file);
+				return MediaFormatFactory.getInputStreamFactory().getInputStream(info.file);
 		return null;
 	}
 
