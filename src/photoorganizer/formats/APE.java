@@ -100,7 +100,7 @@ public class APE extends SimpleMediaFormat<APE.ApeInfo> {
 			super.processCue();
 			APEInfo ai = null;
 			try {
-				ai = new APEInfo(file);
+				ai = new APEInfo(MediaFormatFactory.getInputStreamFactory().createApeFile(file), null);
 				if (attrsMap == null)
 					attrsMap = new HashMap<>();
 				attrsMap.put(MediaInfo.LENGTH, ai.getApeInfoLengthMs() / 1000);
@@ -148,7 +148,7 @@ public class APE extends SimpleMediaFormat<APE.ApeInfo> {
 		public void init(MediaFormat mf) {
 			super.init(mf);
 			try {
-				io = davaguine.jmac.tools.File.createFile(mf.getFile().getPath(), "r");
+				io = MediaFormatFactory.getInputStreamFactory().createApeFile(mf.getFile());
 				decoder = IAPEDecompress.CreateIAPEDecompress(io);
 
 				fmt = new AudioFormat(decoder.getApeInfoSampleRate(), decoder.getApeInfoBitsPerSample(),

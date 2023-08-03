@@ -44,7 +44,7 @@ import org.justcodecs.dsd.Decoder;
 import org.justcodecs.dsd.DecoderInt;
 import org.justcodecs.dsd.Decoder.DecodeException;
 import org.justcodecs.dsd.Decoder.PCMFormat;
-import org.justcodecs.dsd.Utils;
+
 
 import photoorganizer.media.MediaPlayer;
 
@@ -114,6 +114,7 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 
 		private void getInfo() throws IOException, DecodeException {
 			String n = file.getName().toUpperCase();
+			System.out.printf( "File: %s name: %s%n", file.getClass(), n);
 			if (n.endsWith("." + DSD)) {
 				dsd = new DSFFormat();
 			} else if (n.endsWith("." + "ISO")) {
@@ -121,7 +122,7 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 			} else
 				dsd = new DFFFormatMt();
 			try {
-				dsd.init(new Utils.RandomDSDStream(file));
+				dsd.init(MediaFormatFactory.getInputStreamFactory().  getDSDStream(file));
 				Decoder decoder = new Decoder();
 				decoder.init(dsd);
 				attrsMap = new HashMap<>();
@@ -135,6 +136,9 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 				putAttribute(YEAR, dsd.getMetadata("Year"));
 				putAttribute(PICTURE, dsd.getMetadata("Picture"));
 				decoder.dispose();
+			} catch (Exception e) {
+				e.printStackTrace();
+				
 			} finally {
 				dsd.close();
 			}
@@ -155,7 +159,7 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 			decoder = new Decoder();
 			try {
 				//System.err.printf("Play %s %n",  mediaFormat.info.dsd);
-				mediaFormat.info.dsd.init(new Utils.RandomDSDStream(mediaFormat.getFile()));
+				mediaFormat.info.dsd.init(MediaFormatFactory.getInputStreamFactory().  getDSDStream(mediaFormat.getFile()));
 				decoder.init(mediaFormat.info.dsd);
 				PCMFormat pcmf = new PCMFormat();
 				int de = decoder.getSampleRate()/44100 > 128?2:1;
