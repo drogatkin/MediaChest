@@ -5,6 +5,8 @@ import net.didion.loopy.AccessStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+
 import org.justcodecs.dsd.DSDStream;
 import org.justcodecs.dsd.Utils;
 
@@ -16,7 +18,7 @@ public class InputStreamFactory {
 	   return new FileInputStream(file);
    }
    
-   public DataInput getDataInputm(File file) throws IOException {
+   public DataInput getDataInput(File file) throws IOException {
 	   return null;
    }
    
@@ -30,6 +32,10 @@ public class InputStreamFactory {
    
    public davaguine.jmac.tools.File createApeFile(File file) throws IOException {
 	   return davaguine.jmac.tools.File.createFile(file.getPath(), "r") ;
+   }
+   
+   public FileChannel getInputChannel(File file) throws IOException {
+	   return new FileInputStream(file).getChannel();
    }
    
    public static class AccessRandomAccessFile extends RandomAccessFile implements AccessStream {

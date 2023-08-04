@@ -195,7 +195,7 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 		protected void readInfo() throws IOException {
 			attrsMap = new HashMap<>();
 			// read atom container header
-			FileChannel channel = new FileInputStream(file).getChannel();
+			FileChannel channel = MediaFormatFactory.getInputStreamFactory().getInputChannel(file);
 			int point = 12;
 			ByteBuffer buffer = readChunkHeader(channel, 12);
 			if (buffer.getInt() != BasicIo.asInt("RIFF"))

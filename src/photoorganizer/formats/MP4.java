@@ -482,7 +482,7 @@ public class MP4 implements MediaFormat {
 
 		protected void readInfo() throws IOException {
 			// read atom container header
-			FileChannel channel = new FileInputStream(file).getChannel();
+			FileChannel channel = MediaFormatFactory.getInputStreamFactory().getInputChannel(file);
 			try {
 				while (channel.position() < channel.size())
 					readAtom(channel);
