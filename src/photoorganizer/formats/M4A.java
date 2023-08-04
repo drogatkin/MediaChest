@@ -27,6 +27,7 @@
 package photoorganizer.formats;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.List;
@@ -50,6 +51,7 @@ import photoorganizer.media.MediaPlayer;
 
 import com.beatofthedrum.alacdecoder.AlacContext;
 import com.beatofthedrum.alacdecoder.AlacUtils;
+import com.beatofthedrum.alacdecoder.AlacInputStreamImpl;
 
 public class M4A extends MP4 {
 	public static final String M4A = "M4A";
@@ -76,7 +78,7 @@ public class M4A extends MP4 {
 			result.init(this);
 			return result;
 		} else if ((getType() & MediaFormat.VIDEO) == 0) {
-			//AACPlayer result = new AACPlayer();
+			// AACPlayer result = new AACPlayer();
 			MP4Player result = new MP4Player();
 			result.init(this);
 			return result;
@@ -89,22 +91,27 @@ public class M4A extends MP4 {
 
 		@Override
 		void playLoop() {
-			ac = AlacUtils.AlacOpenFileInput(mediaFormat.getFile().getPath());
-			if (ac.error) {
-				reportError(statusMessage, null);
-				return;
-			}
 			int num_channels;
-			fmt = new AudioFormat(AlacUtils.AlacGetSampleRate(ac), AlacUtils.AlacGetBitsPerSample(ac),
-					num_channels = AlacUtils.AlacGetNumChannels(ac), true, false);
-			info = new DataLine.Info(SourceDataLine.class, fmt, AudioSystem.NOT_SPECIFIED);
-
 			try {
-				//info = new DataLine.Info(SourceDataLine.class, fmt, 4000);
+				ac = AlacUtils.AlacOpenFileInput(new AlacInputStreamImpl(
+						MediaFormatFactory.getInputStreamFactory().getInputStream(mediaFormat.getFile())));
+				if (ac.error) {
+					reportError(statusMessage, null);
+					return;
+				}
+
+				fmt = new AudioFormat(AlacUtils.AlacGetSampleRate(ac), AlacUtils.AlacGetBitsPerSample(ac),
+						num_channels = AlacUtils.AlacGetNumChannels(ac), true, false);
+				info = new DataLine.Info(SourceDataLine.class, fmt, AudioSystem.NOT_SPECIFIED);
+
+				// info = new DataLine.Info(SourceDataLine.class, fmt, 4000);
 				line = new SimpleDownSampler(fmt).getLine();
 				fmt = line.getFormat();
 				if (!line.isOpen())
 					line.open(fmt, AudioSystem.NOT_SPECIFIED);
+			} catch (IOException e) {
+				reportError(String.format("IO with %s", mediaFormat.getFile()), e);
+				return;
 			} catch (LineUnavailableException e) {
 				reportError(String.format("Can't obtain line with %s", fmt), e);
 				return;
@@ -112,19 +119,20 @@ public class M4A extends MP4 {
 			line.start();
 
 			byte[] pcmBuffer = new byte[65536];
-			
+
 			int bytes_unpacked;
 
-			int[] pDestBuffer = new int[1024 * 24 * 3]; // 24kb buffer = 4096 frames = 1 alac sample (we support max 24bps)
+			int[] pDestBuffer = new int[1024 * 24 * 3]; // 24kb buffer = 4096 frames = 1 alac sample (we support max
+														// 24bps)
 
 			int bps = AlacUtils.AlacGetBytesPerSample(ac);
 
 			while (true) {
 				bytes_unpacked = AlacUtils.AlacUnpackSamples(ac, pDestBuffer);
 				if (bytes_unpacked > 0) {
-					SimpleDownSampler.samplesToBytes(bps, pDestBuffer, bytes_unpacked/bps, pcmBuffer, bps,
-							num_channels==2, true);
-					line.write(pcmBuffer, 0, bytes_unpacked); 
+					SimpleDownSampler.samplesToBytes(bps, pDestBuffer, bytes_unpacked / bps, pcmBuffer, bps,
+							num_channels == 2, true);
+					line.write(pcmBuffer, 0, bytes_unpacked);
 				} else
 					break;
 
@@ -174,10 +182,9 @@ public class M4A extends MP4 {
 			}
 		}
 
-		/*@Override
-		void freeResources() {
-			super.freeResources();
-		}*/
+		/*
+		 * @Override void freeResources() { super.freeResources(); }
+		 */
 	}
 
 	class MP4Player extends SimpleMediaFormat.SimpleMediaPlayer {
@@ -189,28 +196,29 @@ public class M4A extends MP4 {
 			AudioTrack track;
 			Decoder dec;
 			try {
-				//create container
+				// create container
 				final MP4Container cont = new MP4Container(raf = new RandomAccessFile(mediaFormat.getFile(), "r"));
 				final Movie movie = cont.getMovie();
-				//find AAC track
+				// find AAC track
 				final List<Track> tracks = movie.getTracks(AudioTrack.AudioCodec.AAC);
 				if (tracks.isEmpty())
 					throw new Exception("movie does not contain any AAC track");
 				track = (AudioTrack) tracks.get(0);
 
-				//create audio format
-				fmt = new AudioFormat(track.getSampleRate(), track.getSampleSize(), track.getChannelCount(), true, true);
+				// create audio format
+				fmt = new AudioFormat(track.getSampleRate(), track.getSampleSize(), track.getChannelCount(), true,
+						true);
 				line = AudioSystem.getSourceDataLine(fmt);
 				line.open();
 				line.start();
-				//create AAC decoder
+				// create AAC decoder
 				dec = new Decoder(track.getDecoderSpecificInfo());
 			} catch (Exception e) {
 				reportError("AAC exception", e);
-				//AudioSystem.
+				// AudioSystem.
 				return;
 			}
-			//decode
+			// decode
 			Frame frame;
 			final SampleBuffer buf = new SampleBuffer();
 			while (track.hasMoreFrames()) {

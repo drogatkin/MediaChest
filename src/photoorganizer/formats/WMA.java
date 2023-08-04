@@ -358,7 +358,7 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 				fmt = line.getFormat();
 				if (!line.isOpen())
 					line.open(fmt);
-				inputStream = new FileInputStream(WMA.this.info.file);
+				inputStream = MediaFormatFactory.getInputStreamFactory().  getInputStream(WMA.this.info.file);
 				// TODO: how many actually skipped
 				inputStream.skip(WMA.this.info.dataStart);
 				line.start();
