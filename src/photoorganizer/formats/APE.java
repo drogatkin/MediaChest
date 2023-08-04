@@ -97,9 +97,14 @@ public class APE extends SimpleMediaFormat<APE.ApeInfo> {
 
 		@Override
 		void processCue() throws IOException {
-			super.processCue();
+			try {
+				super.processCue();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 			APEInfo ai = null;
 			try {
+				//System.out.printf("file %s%n", file);
 				ai = new APEInfo(MediaFormatFactory.getInputStreamFactory().createApeFile(file), null);
 				if (attrsMap == null)
 					attrsMap = new HashMap<>();

@@ -842,10 +842,6 @@ public class Controller extends Registry implements ActionListener, Persistancab
 		return op;
 	}
 
-	public static boolean isJdk1_4() {
-		return true;
-	}
-
 	public void setEncoding(String encoding) {
 		Controller.encoding = encoding;
 	}

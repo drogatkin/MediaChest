@@ -101,10 +101,6 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 	@Override
 	public InputStream getAsStream() throws IOException {
 		if (info != null)
-			if (!Controller.isJdk1_4())
-				return getUrl().openStream(); // a caller can use new
-			// BufferedInputStream()
-			else
 				return MediaFormatFactory.getInputStreamFactory().getInputStream(info.file);
 		return null;
 	}

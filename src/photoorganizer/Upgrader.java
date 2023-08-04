@@ -214,7 +214,7 @@ public class Upgrader {
 	}
 
 	protected void checkJavaVersion() {
-		if (!Controller.isJdk1_4())
+		if (false)
 			JOptionPane.showMessageDialog(controller.mediachest, PhotoOrganizer.PROGRAMNAME + ' '
 					+ Resources.LABEL_JDK_UPGRADE, Resources.TITLE_UPGRADE, JOptionPane.CLOSED_OPTION
 					+ JOptionPane.WARNING_MESSAGE);

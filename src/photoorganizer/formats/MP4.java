@@ -256,11 +256,7 @@ public class MP4 implements MediaFormat {
 
 	public InputStream getAsStream() throws IOException {
 		if (info != null)
-			if (!Controller.isJdk1_4())
-				return getUrl().openStream(); // a caller can use new
-			// BufferedInputStream()
-			else
-				return new FileInputStream(info.file);
+			return MediaFormatFactory.getInputStreamFactory().  getInputStream(info.file);
 		return null;
 	}
 

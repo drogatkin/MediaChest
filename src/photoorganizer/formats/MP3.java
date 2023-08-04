@@ -324,10 +324,7 @@ public class MP3 implements MediaFormat {
 
 	public InputStream getAsStream() throws IOException {
 		if (info != null)
-			if (!Controller.isJdk1_4())
-				return getUrl().openStream(); // a caller can use new BufferedInputStream()
-			else
-				return new FileInputStream(info);
+			return MediaFormatFactory.getInputStreamFactory().  getInputStream(info);
 		return null;
 	}
 
