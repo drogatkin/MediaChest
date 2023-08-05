@@ -51,6 +51,7 @@ import org.aldan3.util.Stream;
 
 import photoorganizer.Controller;
 import photoorganizer.Resources;
+import photoorganizer.formats.SimpleMediaFormat.InputBuffer;
 import photoorganizer.media.MediaPlayer;
 
 public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
@@ -353,7 +354,7 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 						(int) WMA.this.info.getAttribute(WMAInfo.BITRATE),
 						"mono".equals(WMA.this.info.getAttribute(WMAInfo.MODE)) ? 1 : 2, true, false);
 				line = new SimpleDownSampler(fmt).getLine();
-				int block = fmt.getFrameSize()  * 2000;
+				int block = fmt.getFrameSize()  * 240000;
 				byte[] playBuf = new byte[block];
 				fmt = line.getFormat();
 				if (!line.isOpen())
@@ -362,13 +363,22 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 				// TODO: how many actually skipped
 				inputStream.skip(WMA.this.info.dataStart);
 				line.start();
+				SimpleMediaFormat.AsyncReader reader = new SimpleMediaFormat.AsyncReader(inputStream, block).start();
 				for (;;) {
-					int len = inputStream.read(playBuf);
+					//int len = inputStream.read(playBuf);
+					InputBuffer buf = reader.read();
+					//System.out.printf("Read %d bytes in play buffer%n", len);
 					//System.out.printf("0x%s%n", Utils.toHexString(0, 24,playBuf));
-					if (len > 0)
-						line.write(playBuf, 0, len);
-					if (len < playBuf.length)
+					//if (len > 0)
+					if (buf.count > 0)
+						line.write(buf.buffer, 0, buf.count);
+						//line.write(playBuf, 0, len);
+					
+					if (buf.count < buf.buffer.length)
 						break;
+					reader.done(buf);
+					//if (len < playBuf.length)
+					//	break;
 					if (checkPause() == false)
 						break;
 				}

@@ -38,6 +38,7 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
@@ -476,5 +477,62 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 			throw new IllegalArgumentException("No mixer "+mixerName+" found.");
 		}		
 		
+	}
+	
+	static public class  InputBuffer {
+		byte buffer[];
+		int count;
+		public InputBuffer(int size) {
+			buffer = new byte[size];
+		}
+		
+		public void read(InputStream is) throws IOException {
+			count = is.read(buffer);
+		}
+	}
+    public class AsyncReader implements Runnable {
+    	ArrayBlockingQueue<InputBuffer> queue, ready;
+    	InputStream is;
+    	boolean stop = false;
+    	Thread t = new Thread(this, "reader");
+		public AsyncReader(InputStream ins, int bufSize) {
+			is = ins;
+			int cap = 3;
+			queue = new ArrayBlockingQueue<>(cap, true);
+			ready = new ArrayBlockingQueue<>(cap, true);
+			for (int i = 0; i < cap; i++) {
+				queue.add(new InputBuffer(bufSize));
+			}
+			
+		}
+		public AsyncReader start() {
+			stop = false;
+			t.start();
+			 return this;
+		}
+		public void stop() {
+			stop = true;
+		}
+		public void run() {
+			do {
+				try {
+					InputBuffer buf = queue.take();
+					buf.read(is);
+					if (buf.count > 0) {
+						ready.add(buf);
+					}
+				} catch(InterruptedException ie) {
+					stop();
+				} catch(IOException io) {
+					io.printStackTrace();
+				}
+			} while(!stop);
+		}
+		public InputBuffer read() throws InterruptedException {
+			return ready.take();
+		}
+		public void done(InputBuffer buf) {
+			queue.add(buf);
+		}
 	}
 }

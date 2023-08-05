@@ -216,7 +216,7 @@ public class SimpleMediaInfo implements MediaInfo {
 			File cueFile = new File(file.getParent(), mediaName.substring(0, extPos) + ".cue");
 			if (cueFile.exists() == false)
 				cueFile = new File(file.getParent(), mediaName + ".cue");
-			return new FileInputStream(cueFile);
+			return MediaFormatFactory.getInputStreamFactory().  getInputStream(cueFile);
 		}
 
 		return null;
