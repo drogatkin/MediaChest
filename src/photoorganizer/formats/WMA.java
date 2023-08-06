@@ -154,10 +154,6 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 		return null;
 	}
 
-	public File getFile() {
-		return info.file;
-	}
-
 	public boolean renameTo(File dest) {
 		if (info.renameTo(dest))
 			try {
@@ -354,12 +350,12 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 						(int) WMA.this.info.getAttribute(WMAInfo.BITRATE),
 						"mono".equals(WMA.this.info.getAttribute(WMAInfo.MODE)) ? 1 : 2, true, false);
 				line = new SimpleDownSampler(fmt).getLine();
-				int block = fmt.getFrameSize()  * 240000;
+				int block = fmt.getFrameSize()  * 16000;
 				byte[] playBuf = new byte[block];
 				fmt = line.getFormat();
 				if (!line.isOpen())
 					line.open(fmt);
-				inputStream = MediaFormatFactory.getInputStreamFactory().  getInputStream(WMA.this.info.file);
+				inputStream = MediaFormatFactory.getInputStreamFactory().  getInputStream(WMA.this.getFile());
 				// TODO: how many actually skipped
 				inputStream.skip(WMA.this.info.dataStart);
 				line.start();
@@ -382,6 +378,7 @@ public class WMA extends SimpleMediaFormat<WMA.WMAInfo> {
 					if (checkPause() == false)
 						break;
 				}
+				reader.interrupt();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

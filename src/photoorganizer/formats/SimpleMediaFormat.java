@@ -102,7 +102,7 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 	@Override
 	public InputStream getAsStream() throws IOException {
 		if (info != null)
-				return MediaFormatFactory.getInputStreamFactory().getInputStream(info.file);
+				return MediaFormatFactory.getInputStreamFactory().getInputStream(getFile());
 		return null;
 	}
 
@@ -533,6 +533,9 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 		}
 		public void done(InputBuffer buf) {
 			queue.add(buf);
+		}
+		public void interrupt() {
+			t.interrupt();
 		}
 	}
 }
