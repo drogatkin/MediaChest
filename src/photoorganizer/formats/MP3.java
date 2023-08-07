@@ -64,10 +64,13 @@ import photoorganizer.Resources;
 import photoorganizer.media.MediaPlayer;
 import de.vdheide.mp3.Bytes;
 import de.vdheide.mp3.FrameDamagedException;
+import de.vdheide.mp3.ID3;
+import de.vdheide.mp3.ID3v2;
 import de.vdheide.mp3.ID3v2DecompressionException;
 import de.vdheide.mp3.ID3v2IllegalVersionException;
 import de.vdheide.mp3.ID3v2WrongCRCException;
 import de.vdheide.mp3.MP3File;
+import de.vdheide.mp3.MP3Properties;
 import de.vdheide.mp3.NoMP3FrameException;
 import de.vdheide.mp3.TagContent;
 
@@ -281,8 +284,8 @@ public class MP3 implements MediaFormat {
 			info.getLength();
 		} catch (Exception e) {
 			info = null;
-			//System.err.println(e.toString()+' '+file+" "+e);
-			//e.printStackTrace();
+			System.err.println(e.toString()+' '+file+" "+e);
+			e.printStackTrace();
 		}
 	}
 
@@ -323,8 +326,12 @@ public class MP3 implements MediaFormat {
 	}
 
 	public InputStream getAsStream() throws IOException {
-		if (info != null)
-			return MediaFormatFactory.getInputStreamFactory().  getInputStream(info);
+		if (info != null) {
+			File file = info;
+			if (info instanceof MP3File) 
+				file = ((MP3File)info).getPrincipal();
+			return MediaFormatFactory.getInputStreamFactory().  getInputStream(file);
+		}
 		return null;
 	}
 
@@ -550,6 +557,25 @@ public class MP3 implements MediaFormat {
 			// TODO: more clear about encoding
 			super(file, "", encoding == null ? Controller.getEncoding() : encoding);
 		}
+		
+		protected void reset(String encoding) throws IOException, NoMP3FrameException, ID3v2WrongCRCException,
+	      ID3v2DecompressionException, ID3v2IllegalVersionException
+	  {
+		prop  = new MP3Properties(this) {
+			protected InputStream getInputStream(File file) throws IOException {
+				//System.out.printf("File = %s%n", file.getClass());
+				if (file instanceof MP3File) 
+					file = ((MP3File)file).getPrincipal();
+				return MediaFormatFactory.getInputStreamFactory().  getInputStream(file);
+			}
+		};
+		id3   = new ID3(this, encoding);
+		File file = this;
+		if (this instanceof MP3File) 
+			file = ((MP3File)this).getPrincipal();
+		id3v2 = new ID3v2(new de.vdheide.mp3.IOAdapter(MediaFormatFactory.getInputStreamFactory().  getInputStream(file)), encoding);
+		setTagsEncoding(encoding);
+	  }
 
 		public void setAttribute(String name, Object value) {
 			try {
