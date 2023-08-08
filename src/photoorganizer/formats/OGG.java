@@ -63,6 +63,7 @@ public class OGG extends SimpleMediaFormat<OGG.OggInfo> {
 	static byte[] defaultIconData;
 	private static final boolean __debug = true;
 
+	// sources of OGG https://github.com/ymnk/jorbis
 	public OGG(File file, String enc) {
 		super(file, enc);
 	}
@@ -107,7 +108,7 @@ public class OGG extends SimpleMediaFormat<OGG.OggInfo> {
 			super(file, en);
 			VorbisFile vf = null;
 			try {
-				vf = new VorbisFile(file.getPath());
+				vf = new VorbisFile(getAsStream(), null, 0);
 				attrsMap = new HashMap<>();
 				for (Comment comment : vf.getComment()) {
 					// see http://www.xiph.org/vorbis/doc/v-comment.html
@@ -157,7 +158,7 @@ public class OGG extends SimpleMediaFormat<OGG.OggInfo> {
 					break;
 				}
 				//System.err.printf("Vorbis comments:%s%n", Arrays.toString(vf.getComment()));
-			} catch (JOrbisException e) {
+			} catch (JOrbisException | IOException e) {
 				e.printStackTrace();
 			} finally {
 				try {
