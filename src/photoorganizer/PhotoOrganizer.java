@@ -90,9 +90,9 @@ public class PhotoOrganizer extends JFrame implements /* Program, */IrdControlla
 
 	public static final String PROGRAMNAME = "MediaChest";
 
-	public static final String VERSION = "version 2.3";
+	public static final String VERSION = "version 2.4";
 
-	public static final int BUILD = 218;
+	public static final int BUILD = 221;
 
 	public static final String COPYRIGHT = "Copyright \u00a9 1999-2023 Dmitriy Rogatkin";
 
@@ -100,7 +100,7 @@ public class PhotoOrganizer extends JFrame implements /* Program, */IrdControlla
 
 	public static final String HOME_PAGE = "http://mediachest.sourceforge.net/index.html";
 
-	public static final String BASE_URL = "http://mediachest.sourceforge.net/";
+	public static final String BASE_URL = "https://github.com/drogatkin/MediaChest";
 
 	public static final String KEY_BROWSE = "Browse";
 
