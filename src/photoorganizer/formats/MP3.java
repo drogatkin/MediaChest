@@ -284,8 +284,8 @@ public class MP3 implements MediaFormat {
 			info.getLength();
 		} catch (Exception e) {
 			info = null;
-			System.err.println(e.toString()+' '+file+" "+e);
-			e.printStackTrace();
+			//System.err.println(e.toString()+' '+file+" "+e);
+			//e.printStackTrace();
 		}
 	}
 
