@@ -52,7 +52,7 @@ public class SimpleMediaInfo implements MediaInfo {
 	protected SimpleMediaInfo(File f, String e) {
 		file = f;
 		if (file.exists() == false || file.isDirectory())
-			throw new IllegalArgumentException("File " + file + " doesn't exist or directory");
+			throw new IllegalArgumentException("File " + file + " doesn't exist or it's a directory");
 		encoding = e;
 		if (cueAware())
 			try {

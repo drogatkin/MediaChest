@@ -114,7 +114,7 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 
 		private void getInfo() throws IOException, DecodeException {
 			String n = file.getName().toUpperCase();
-			System.out.printf( "File: %s name: %s%n", file.getClass(), n);
+			//System.out.printf( "File: %s name: %s%n", file.getClass(), n);
 			if (n.endsWith("." + DSD)) {
 				dsd = new DSFFormat();
 			} else if (n.endsWith("." + "ISO")) {

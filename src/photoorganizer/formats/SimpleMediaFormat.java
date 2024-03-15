@@ -66,7 +66,7 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 
 	static protected byte[] defaultIconData;
 
-	private static final boolean __debug = true;
+	private static final boolean __debug = false;
 
 	protected SimpleMediaFormat(File file, String enc) {
 		try {
@@ -83,7 +83,7 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 		} catch (Exception e) {
 			info = null;
 			if (__debug)
-				System.err.println(e.toString() + " in probe for WAV in " + file);
+				System.err.println(e.toString() + " in a probe for WAV in " + file);
 		}
 	}
 
