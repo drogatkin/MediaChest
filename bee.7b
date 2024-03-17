@@ -124,6 +124,8 @@ target jar {
       }
      
      {    display(Jarring ${build_file} ...)
+          files(resource/image/*.jpg,resource/image/*.png, resource/image/*.gif, resource/template/*.htmp, resource/template/*.xml, resource/text/*.res)
+          assign(reses, ~~)
           exec jar (
             -cmf, ${~cwd~}/src/${manifest},
             ${build_directory}/${build_file},
@@ -135,8 +137,7 @@ target jar {
             mediautil,
             -C,
             .,
-            resource/image/photoorganizer.jpg,
-            resource/text/help.res
+            reses
           )
         if {
          neq(${~~}, 0)
@@ -155,9 +156,12 @@ target run :.: {
     {
         scalar(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
-           exec java (
+        # set_env(MediaChest.home,./data/)
+        # exec printenv (MediaChest.home)
+           exec java::. (
                     -cp,
-                     ${build_directory}/${build_file}${~path_separator~}${extra deps},
+                     ${build_directory}/${build_file}${~path_separator~}${extra deps},           
+                     -DMediaChest.home=./data/,
                      photoorganizer.PhotoOrganizer,
                     ~args~
                    )
