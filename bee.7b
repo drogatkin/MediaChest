@@ -51,14 +51,13 @@ target compile util:. {
    dependency {
        or {
              { newerthan(${source_directory_util}/.java,${build_directory}/.class)
-              file_filter(~~,*-info.java) }
+               filter(~~,*-info.java) }
        }
    }
    {
         display(Compiling Java media util src ...)
        newerthan(${source_directory_util}/.java,${build_directory}/.class)
        assign(util src,~~)
-#      display(${util src})
        exec javac (
          -d,
          ${build_directory},
@@ -92,8 +91,7 @@ target compile:. {
         display(Compiling Java src ...)
        newerthan(${source_directory}/.java,${build_directory}/.class)
        assign(main src,~~)
-#       display(${main src})
-       scalar(CUSTOM CP,~path_separator~)
+       join(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
        exec javac (
          -d,
@@ -156,8 +154,6 @@ target run :.: {
     {
         scalar(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
-        # set_env(MediaChest.home,./data/)
-        # exec printenv (MediaChest.home)
            exec java::. (
                     -cp,
                      ${build_directory}/${build_file}${~path_separator~}${extra deps},           
