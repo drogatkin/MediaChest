@@ -33,7 +33,7 @@ ${JAVA_HOME}/jre/lib/javaws.jar,
 .temp_repo/jlayer-1.0.1.jar,
 # 1.6.2
 ../shared/lib/javax.mail.jar,
-3 .temp_repo/mail-1.4.7.jar,
+# .temp_repo/mail-1.4.7.jar,
 .temp_repo/jorbis-0.0.17.jar,
 # switch to 4.0 servlet
 .temp_repo/javax.servlet-api-3.1.0.jar
