@@ -50,7 +50,8 @@ public class WavPack extends SimpleMediaFormat<WavPack.WavpackInfo> {
 	public static final String WAVPACK = "WAVPACK";
 	public static final String WV = "WV";
 	public static final String ISOWV = "ISO.WV";
-	public static final String[] EXTENSIONS = { WV, ISOWV };
+	public static final String WVISO = "WV.ISO";
+	public static final String[] EXTENSIONS = { WV, ISOWV, WVISO };
 	static byte[] defaultIconData;
 
 	public WavPack(File file, String enc) {
@@ -156,7 +157,7 @@ public class WavPack extends SimpleMediaFormat<WavPack.WavpackInfo> {
 			if (fs != null)
 				return;
 			String mediaName = file.getName().toUpperCase();
-			if (mediaName.endsWith("." + ISOWV))
+			if (mediaName.endsWith("." + ISOWV) || mediaName.endsWith("." + WVISO))
 				fs = new ISO9660FileSystem(MediaFormatFactory.getInputStreamFactory().getRandomAccessStream(file));
 		}
 
