@@ -63,9 +63,6 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
-import javax.jnlp.FileContents;
-import javax.jnlp.PersistenceService;
-import javax.jnlp.ServiceManager;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -677,38 +674,7 @@ public class Controller extends Registry implements ActionListener, Persistancab
 	}
 
 	public static OutputStream getWSAwareOutStream(String path, String name) throws IOException {
-		Class use = null;
-		PersistenceService ps = null;
-		OutputStream os = null;
-		try {
-			use = Class.forName("javax.jnlp.UnavailableServiceException");
-		} catch (ClassNotFoundException cne) {
-		} catch (Error e) {
-		}
-		if (use != null)
-			try {
-				ps = (PersistenceService) ServiceManager.lookup("javax.jnlp.PersistenceService");
-			} catch (Exception e) {
-			}
-		if (ps != null) {
-			FileContents fc = null;
-			try {
-				for (int i = 0; i < 2; i++) {
-					URL url = new URL("file", path, name);
-					try {
-						fc = ps.get(url);
-						os = fc.getOutputStream(true);
-						i = 2;
-					} catch (java.io.FileNotFoundException fne) {
-						ps.create(url, 1024 * 10);
-					}
-				}
-			} catch (Exception e) {
-			}
-		}
-		if (os == null)
-			os = new FileOutputStream(new File(path, name));
-		return os;
+		return new FileOutputStream(new File(path, name));
 	}
 
 	public void save() {

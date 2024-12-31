@@ -1,61 +1,103 @@
 # MediaChest
 
 project =mediachest
-"build_directory" = ${~cwd~}/lib
-source_directory ="${~cwd~}/src"
-source_directory_util ="../mediautil/src"
-doc_directory=${~cwd~}/doc
+"build_directory" = ${~cwd~}${~/~}lib
+source_directory ="${~cwd~}${~/~}src"
+source_directory_util ="..${~/~}mediautil${~/~}src"
+doc_directory=${~cwd~}${~/~}doc
 build_file ="${project}.jar"
  domain ="photoorganizer"
 # resources ="${domain}.${project}.resources"
 manifest ="manifest.mf"
 main_class= "${domain}.PhotoOrganizer"
 version=8
-include(../rust_util/src/script/common-java.7b) 
+include(..${~/~}rusthub${~/~}src${~/~}script${~/~}common-java.7b) 
 
-CUSTOM CP=[${~cwd~}/../tiny-codec/tools/ID3V2/bin/id3v2.jar,
-../shared/lib/IBMPlayerForMpeg4SDK.jar,
-../JustFLAC/lib/jflac.jar,
-../tiny-codec/codecs/APE/lib/ape-lib.jar,
-../tiny-codec/codecs/Wavpack/bin/wavpack.jar,
-../tiny-codec/codecs/ALAC/bin/alacdecoder.jar,
-../tiny-codec/tools/ISO/bin/loopy.jar,
-../shared/lib/jaad-0.8.4.jar,
-# see https://github.com/frohoff/jdk8u-jdk
-../shared/lib/comm.jar,
-../tiny-codec/tools/CUE/bin/cuelib-1.2.1.jar,
-../JustDSD/lib/jdsd.jar,
-../aldan3/build/aldan3.jar,
-../aldan3-jdo/build/aldan3-jdo.jar,
-../AddressBook/lib/addressbook.jar,
-${JAVA_HOME}/jre/lib/javaws.jar,
+maven_deps=[javazoom:jlayer:1.0.1,
+   org.jcraft:jorbis:0.0.17,
+   javax.mail:mail:1.4.7,
+   com.h2database:h2:2.3.232,
+   javax.servlet:javax.servlet-api:4.0.1,
+   javax.activation:activation:1.1.1
+]
+
+CUSTOM CP=[${~cwd~}${~/~}..${~/~}tiny-codec${~/~}tools${~/~}ID3V2${~/~}bin${~/~}id3v2.jar,
+..${~/~}side${~/~}IBMPlayerForMpeg4SDK${~/~}lib${~/~}IBMPlayerForMpeg4SDK.jar,
+..${~/~}JustFLAC${~/~}lib${~/~}jflac.jar,
+..${~/~}tiny-codec${~/~}codecs${~/~}APE${~/~}lib${~/~}ape-lib.jar,
+..${~/~}tiny-codec${~/~}codecs${~/~}Wavpack${~/~}bin${~/~}wavpack.jar,
+..${~/~}tiny-codec${~/~}codecs${~/~}ALAC${~/~}bin${~/~}alacdecoder.jar,
+..${~/~}tiny-codec${~/~}tools${~/~}ISO${~/~}bin${~/~}loopy.jar,
+..${~/~}side${~/~}jaad${~/~}jaad-0.8.4.jar,
+# see https:${~/~}${~/~}github.com${~/~}frohoff${~/~}jdk8u-jdk
+..${~/~}side${~/~}comm${~/~}lib${~/~}comm.jar,
+..${~/~}tiny-codec${~/~}tools${~/~}CUE${~/~}bin${~/~}cuelib-1.2.1.jar,
+..${~/~}JustDSD${~/~}lib${~/~}jdsd.jar,
+..${~/~}aldan3${~/~}build${~/~}aldan3.jar,
+..${~/~}aldan3-jdo${~/~}build${~/~}aldan3-jdo.jar,
+..${~/~}jAddressBook${~/~}lib${~/~}addressbook.jar,
 # maven loadable 
-.temp_repo/jlayer-1.0.1.jar,
+.temp_repo${~/~}jlayer-1.0.1.jar,
 # 1.6.2
-../shared/lib/javax.mail.jar,
-# .temp_repo/mail-1.4.7.jar,
-.temp_repo/jorbis-0.0.17.jar,
+.temp_repo${~/~}mail-1.4.7.jar,
+.temp_repo${~/~}jorbis-0.0.17.jar,
+.temp_repo${~/~}activation-1.1.1.jar,
 # switch to 4.0 servlet
-.temp_repo/javax.servlet-api-3.1.0.jar
+.temp_repo${~/~}javax.servlet-api-4.0.1.jar
 ]
 
 target clean {
     dependency {true}
-    exec rm  (
-        -r,
-        ${build_directory}/${domain},
-        ${build_directory}/${build_file}
+    rm  (
+        ${build_directory}${~/~}${domain},
+        ${build_directory}${~/~}${build_file}
     )
 }
 
-target compile util:. {
-   dependency {
-       or {
-             { newerthan(${source_directory_util}/.java,${build_directory}/.class)
-               filter(~~,*-info.java) }
-       }
+target dep_dir {
+  dependency {
+     eq {
+        timestamp(${build_directory}${~separator~}.temp_repo)
+     }
    }
-   {
+   display(Dir ${build_directory}${~separator~}.temp_repo)
+   mkd (
+        ${build_directory}${~separator~}.temp_repo
+   )
+}
+
+target load_dep {
+	dependency { target(dep_dir) }
+	dependency{true}
+	
+	for dep:maven_deps {
+	    display(Dep: ${dep})
+		as_jar(dep)
+		assign(jar, ~~)
+		if {
+           eq {
+             timestamp(.temp_repo${~/~}${jar})
+          }
+       then {
+         display(Loading ${jar})
+         as_url(dep)
+         exec wget (
+           ~~, 
+           -O,
+           .temp_repo${~/~}${jar}
+         )
+      }
+	}
+   }
+}
+
+target compile util:. {
+  # dependency {
+      # or {
+      #       { newerthan(${source_directory_util}/.java,${build_directory}/.class)
+      #         filter(~~,*-info.java) }
+      # }
+   #}
         display(Compiling Java media util src ...)
        newerthan(${source_directory_util}/.java,${build_directory}/.class)
        assign(util src,~~)
@@ -76,7 +118,6 @@ target compile util:. {
             panic("Compilation error(s)")
          }
      }
-   }
 }
 
 target compile:. {
@@ -94,6 +135,7 @@ target compile:. {
        assign(main src,~~)
        join(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
+        display(${extra deps})
        exec javac (
          -d,
          ${build_directory},
@@ -116,18 +158,29 @@ target compile:. {
 
 target jar {
       dependency {
-         anynewer(${build_directory}/${domain}/*,${build_directory}/${build_file})
+         anynewer(${build_directory}${~/~}${domain}${~/~}*,${build_directory}${~/~}${build_file})
       }
       dependency {
           target(compile)
       }
      
      {    display(Jarring ${build_file} ...)
-          files(resource/image/*.jpg,resource/image/*.png, resource/image/*.gif, resource/template/*.htmp, resource/template/*.xml, resource/text/*.res)
+          files(resource${~/~}image${~/~}*.jpg,resource${~/~}image${~/~}*.png, resource${~/~}image${~/~}*.gif, resource${~/~}template${~/~}*.htmp, resource${~/~}template${~/~}*.xml, resource${~/~}text${~/~}*.res)
           assign(reses, ~~)
+          res2=[]
+          for file:reses {
+              
+          	  range(file,35)
+          	  display(${~~})
+          	  array(res2,~~)
+          	  assign(res2,~~)
+          }
+          display(-->${res2})
+          assign(reses,res2)
+          display(${reses})
           exec jar (
-            -cmf, ${~cwd~}/src/${manifest},
-            ${build_directory}/${build_file},
+            -cmf, ${~cwd~}${~/~}src${~/~}${manifest},
+            ${build_directory}${~/~}${build_file},
             -C,
             ${build_directory},
             ${domain},
@@ -135,7 +188,7 @@ target jar {
             ${build_directory},
             mediautil,
             -C,
-            .,
+           ${~cwd~},#${~/~}resource,
             reses
           )
         if {
@@ -152,15 +205,14 @@ target run :.: {
         target(jar)
     }
     dependency {true}
-    {
+    assign(java,C:\Program Files\jdk-21.0.5\bin\java.exe)
         scalar(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
            exec java::. (
                     -cp,
-                     ${build_directory}/${build_file}${~path_separator~}${extra deps},           
-                     -DMediaChest.home=./data/,
+                     ${build_directory}${~/~}${build_file}${~path_separator~}${extra deps},           
+                     -DMediaChest.home=.${~/~}data${~/~},
                      photoorganizer.PhotoOrganizer,
                     ~args~
                    )
-    }
  }
