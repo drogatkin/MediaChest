@@ -171,13 +171,13 @@ target jar {
           for file:reses {
               
           	  range(file,35)
-          	  display(${~~})
+          	  #display(${~~})
           	  array(res2,~~)
           	  assign(res2,~~)
           }
-          display(-->${res2})
+         # display(-->${res2})
           assign(reses,res2)
-          display(${reses})
+         # display(${reses})
           exec jar (
             -cmf, ${~cwd~}${~/~}src${~/~}${manifest},
             ${build_directory}${~/~}${build_file},

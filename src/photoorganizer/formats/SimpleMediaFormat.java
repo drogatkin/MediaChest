@@ -394,6 +394,9 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 						return false;
 					}
 					status = Status.paused;
+					// stop line
+					if (line.isRunning())
+					    line.stop();
 					synchronized (latch) {
 						try {
 							latch.wait();
@@ -406,6 +409,7 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 				} finally {
 					latch = null;
 				}
+			line.start();
 			return true;
 		}
 		
