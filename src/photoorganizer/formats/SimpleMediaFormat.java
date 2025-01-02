@@ -389,20 +389,21 @@ public class SimpleMediaFormat<MI extends SimpleMediaInfo> implements MediaForma
 			if (latch != null)
 				try {
 					if (Status.stopping.equals(status)) {
-						if (line != null && line.isActive())
+						if (line != null) { 
 							line.flush();
+							line.stop();
+						}
 						return false;
 					}
 					status = Status.paused;
 					// stop line
-					if (line.isRunning())
-					    line.stop();
+					line.stop();
 					synchronized (latch) {
 						try {
 							latch.wait();
 						} catch (InterruptedException e) {
-							if (line != null)
-								line.flush();
+						    line.close();
+						    line = null;
 							return false;
 						}
 					}
