@@ -125,6 +125,7 @@ public class FLAC extends SimpleMediaFormat<FLAC.FlacInfo> {
 							long l = si.getTotalSamples() / si.getSampleRate();
 							attrsMap.put(MediaInfo.LENGTH, l);
 							attrsMap.put(MediaInfo.SAMPLERATE, si.getSampleRate());	
+							attrsMap.put(MediaInfo.BITRATE, si.getBitsPerSample());
 						}						
 					} else if (md instanceof VorbisComment) {
 						VorbisComment comment = (VorbisComment) md;

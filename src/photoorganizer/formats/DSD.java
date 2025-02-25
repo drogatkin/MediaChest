@@ -129,6 +129,7 @@ public class DSD extends SimpleMediaFormat<DSD.DSDInfo> {
 				long l = decoder.getSampleCount() / decoder.getSampleRate();
 				attrsMap.put(LENGTH, l);
 				attrsMap.put(SAMPLERATE, decoder.getSampleRate());
+				attrsMap.put(BITRATE, 1);
 				attrsMap.put(TITLE, file.getName());
 				putAttribute(ARTIST, dsd.getMetadata("Artist"));
 				putAttribute(TITLE, dsd.getMetadata("Title"));

@@ -155,6 +155,7 @@ public class OGG extends SimpleMediaFormat<OGG.OggInfo> {
 				}
 				for(Info info:vf.getInfo()) {
 					attrsMap.put(MediaInfo.SAMPLERATE, info.rate);
+					attrsMap.put(MediaInfo.BITRATE, 16);
 					break;
 				}
 				//System.err.printf("Vorbis comments:%s%n", Arrays.toString(vf.getComment()));

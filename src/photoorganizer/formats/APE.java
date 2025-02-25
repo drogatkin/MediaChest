@@ -110,6 +110,7 @@ public class APE extends SimpleMediaFormat<APE.ApeInfo> {
 					attrsMap = new HashMap<>();
 				attrsMap.put(MediaInfo.LENGTH, ai.getApeInfoLengthMs() / 1000);
 				attrsMap.put(MediaInfo.SAMPLERATE, ai.getApeInfoSampleRate());
+				attrsMap.put(MediaInfo.BITRATE, ai.getApeInfoBitsPerSample());
 				APETag at = ai.getApeInfoTag();
 				if (at != null) {
 					String val = at.GetFieldString(APETag.APE_TAG_FIELD_ALBUM);

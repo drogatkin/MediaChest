@@ -205,7 +205,6 @@ target run :.: {
         target(jar)
     }
     dependency {true}
-    assign(java,C:\Program Files\jdk-21.0.5\bin\java.exe)
         scalar(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
            exec java::. (

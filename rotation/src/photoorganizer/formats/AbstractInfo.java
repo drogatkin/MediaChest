@@ -41,7 +41,7 @@ public interface AbstractInfo extends Serializable {
 	public static final String AUDIOFILEWEBPAGE = "AudioFileWebpage";
 	public static final String AUDIOSOURCEWEBPAGE = "AudioSourceWebpage";
 	public static final String BAND = "Band";
-	public static final String BITRATE = "Bitrate";
+	public static final String BITRATE = "Bitrate"; // it's defined also in MediaInfo as BITRATE
 	public static final String CDIDENTIFIER = "CDIdentifier";
 	public static final String COMMENTS = "Comments";
 	public static final String COMMERCIAL = "Commercial";

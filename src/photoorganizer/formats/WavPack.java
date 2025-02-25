@@ -141,6 +141,7 @@ public class WavPack extends SimpleMediaFormat<WavPack.WavpackInfo> {
 					attrsMap = new HashMap<>();
 				long l = WavPackUtils.WavpackGetSampleRate(wpc);
 				attrsMap.put(MediaInfo.SAMPLERATE, (int) l);
+				attrsMap.put(MediaInfo.BITRATE, WavPackUtils.WavpackGetBitsPerSample(wpc));
 				attrsMap.put(MediaInfo.LENGTH, WavPackUtils.WavpackGetNumSamples(wpc) / l);
 			} catch (Exception e) {
 				System.err.printf("WAVPACK: exception %s at getting info%n", e);
