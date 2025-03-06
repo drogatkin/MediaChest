@@ -213,6 +213,10 @@ public class SimpleMediaInfo implements MediaInfo {
 		String mediaName = file.getName();
 		int extPos = mediaName.lastIndexOf('.');
 		if (extPos > 0) {
+		    if (file.getClass().getName() .contains("RemoteFile")) {
+		        System.err.printf("Remote file CUE is currently not supported%n");
+		        return null;
+		    }
 			File cueFile = new File(file.getParent(), mediaName.substring(0, extPos) + ".cue");
 			if (cueFile.exists() == false)
 				cueFile = new File(file.getParent(), mediaName + ".cue");
