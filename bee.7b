@@ -37,13 +37,13 @@ CUSTOM CP=[${~cwd~}${~/~}..${~/~}tiny-codec${~/~}tools${~/~}ID3V2${~/~}bin${~/~}
 ..${~/~}aldan3-jdo${~/~}build${~/~}aldan3-jdo.jar,
 ..${~/~}jAddressBook${~/~}lib${~/~}addressbook.jar,
 # maven loadable 
-.temp_repo${~/~}jlayer-1.0.1.jar,
+${build_directory}${~separator~}.temp_repo${~/~}jlayer-1.0.1.jar,
 # 1.6.2
-.temp_repo${~/~}mail-1.4.7.jar,
-.temp_repo${~/~}jorbis-0.0.17.jar,
-.temp_repo${~/~}activation-1.1.1.jar,
+${build_directory}${~separator~}.temp_repo${~/~}mail-1.4.7.jar,
+${build_directory}${~separator~}.temp_repo${~/~}jorbis-0.0.17.jar,
+${build_directory}${~separator~}.temp_repo${~/~}activation-1.1.1.jar,
 # switch to 4.0 servlet
-.temp_repo${~/~}javax.servlet-api-4.0.1.jar
+${build_directory}${~separator~}.temp_repo${~/~}javax.servlet-api-4.0.1.jar
 ]
 
 target clean {
@@ -79,13 +79,14 @@ target load_dep {
              timestamp(.temp_repo${~/~}${jar})
           }
        then {
-         display(Loading ${jar})
          as_url(dep)
-         exec wget (
-           ~~, 
-           -O,
-           .temp_repo${~/~}${jar}
-         )
+         display(Loading ${jar} from ${~~})
+         exec curl (--output, ${build_directory}${~separator~}.temp_repo${~/~}${jar}, ~~) 
+         #exec wget (
+          # ~~, 
+          # -O,
+          # .temp_repo${~/~}${jar}
+         #)
       }
 	}
    }
@@ -98,7 +99,8 @@ target compile util:. {
       #         filter(~~,*-info.java) }
       # }
    #}
-        display(Compiling Java media util src ...)
+       dependency {false}
+       display(Compiling Java media util src ...)
        newerthan(${source_directory_util}/.java,${build_directory}/.class)
        assign(util src,~~)
        exec javac (
@@ -170,7 +172,7 @@ target jar {
           res2=[]
           for file:reses {
               
-          	  range(file,35)
+          	  range(file,37) # calc range dynamically
           	  #display(${~~})
           	  array(res2,~~)
           	  assign(res2,~~)
