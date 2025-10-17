@@ -16,7 +16,7 @@ include(..${~/~}simscript${~/~}java-env.7b)
 maven_deps=[javazoom:jlayer:1.0.1,
    org.jcraft:jorbis:0.0.17,
    javax.mail:mail:1.4.7,
-   com.h2database:h2:2.3.232,
+   com.h2database:h2:2.4.240,
    javax.servlet:javax.servlet-api:4.0.1,
    javax.activation:activation:1.1.1
 ]
@@ -42,7 +42,6 @@ ${build_directory}${~separator~}.temp_repo${~/~}jlayer-1.0.1.jar,
 ${build_directory}${~separator~}.temp_repo${~/~}mail-1.4.7.jar,
 ${build_directory}${~separator~}.temp_repo${~/~}jorbis-0.0.17.jar,
 ${build_directory}${~separator~}.temp_repo${~/~}activation-1.1.1.jar,
-# switch to 4.0 servlet
 ${build_directory}${~separator~}.temp_repo${~/~}javax.servlet-api-4.0.1.jar
 ]
 
@@ -87,6 +86,12 @@ target load_dep {
           # -O,
           # .temp_repo${~/~}${jar}
          #)
+         if {
+	         neq(~~, 0)
+	         then {
+	            panic("load ${dep} failed.")
+	         }
+	     }
       }
 	}
    }
@@ -171,8 +176,7 @@ target jar {
           assign(reses, ~~)
           res2=[]
           for file:reses {
-              
-          	  range(file,37) # calc range dynamically
+              cropname(file,${~cwd~}${~/~})
           	  #display(${~~})
           	  array(res2,~~)
           	  assign(res2,~~)
@@ -209,11 +213,15 @@ target run :.: {
     dependency {true}
         scalar(CUSTOM CP,~path_separator~)
         assign(extra deps,~~)
-           exec java::. (
-                    -cp,
-                     ${build_directory}${~/~}${build_file}${~path_separator~}${extra deps},           
-                     -DMediaChest.home=.${~/~}data${~/~},
-                     photoorganizer.PhotoOrganizer,
-                    ~args~
-                   )
+        element(maven_deps,3)
+        as_jar(~~)
+        assign(db jar, ${build_directory}${~separator~}.temp_repo${~/~}${~~})
+        display(${db jar})
+        exec java::. (
+            -cp,
+             ${build_directory}${~/~}${build_file}${~path_separator~}${extra deps}${~path_separator~}${db jar},           
+             -DMediaChest.home=.${~/~}data${~/~},
+             photoorganizer.PhotoOrganizer,
+            ~args~
+        )
  }
