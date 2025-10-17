@@ -11,7 +11,7 @@ build_file ="${project}.jar"
 manifest ="manifest.mf"
 main_class= "${domain}.PhotoOrganizer"
 version=8
-include(..${~/~}rusthub${~/~}src${~/~}script${~/~}common-java.7b) 
+include(..${~/~}simscript${~/~}java-env.7b) 
 
 maven_deps=[javazoom:jlayer:1.0.1,
    org.jcraft:jorbis:0.0.17,
