@@ -38,7 +38,7 @@ import photoorganizer.Resources;
 // when the requester/tab gains focus
 public class StatusBar extends JPanel {
 
-	public StatusBar() {
+	public StatusBar(photoorganizer.Controller controller) {
 		// setBorder(new BevelBorder(BevelBorder.LOWERED));
 		setLayout(new BorderLayout());
 		add(progress = new JProgressBar(), "West");

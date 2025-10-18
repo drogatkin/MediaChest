@@ -45,8 +45,7 @@
         <value variable="PATH SEPARATOR"/>
         <value variable="IBM MPEG 4 SDK lib"/>
         <value variable="PATH SEPARATOR"/>
-        <value variable="ACTIVATION_HOME"/>
-        <value>/activation.jar</value> <!-- activation framework -->
+        <value variable="ACTIVATION_LIB"/>
         <value variable="PATH SEPARATOR"/>
         <value variable="JAVACOMM_LIB"/>
         <value variable="PATH SEPARATOR"/>
@@ -270,7 +269,7 @@ public final class BuildStamp {
         <parameter value="lib/mediautil.jar" type="path"/>
       </function>
     </dependency>
-    <task name="jar_do" code="sun.tools.jar.Main">
+    <task name="jar_do" code="sun.tools.jar.Main" tool="jar">
        <parameter value="-cf"/>
        <parameter value="lib/mediautil.jar" type="path"/>
        <parameter value="-C"/>
@@ -294,7 +293,7 @@ public final class BuildStamp {
         <parameter value="lib/MediaChest.jar" type="file"/>
       </function>
     </dependency>
-    <task name="jar_do" code="sun.tools.jar.Main">
+    <task name="jar_do" code="sun.tools.jar.Main"  tool="jar">
        <parameter value="-cmf"/>
        <parameter value="src/manifest.mf" type="file"/>
        <parameter value="lib/MediaChest.jar" type="file"/>
